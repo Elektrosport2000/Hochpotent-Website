@@ -1,0 +1,29 @@
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import About from './components/About';
+import Venues from './components/Venues';
+import Sets from './components/Sets';
+import Dates from './components/Dates';
+import Media from './components/Media';
+import Presskit from './components/Presskit';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+
+export default function App() {
+  return (
+    <div className="min-h-screen bg-dark-bg text-white selection:bg-neon-violet selection:text-white">
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Venues />
+        <Sets />
+        <Dates />
+        <Media />
+        <Presskit />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  );
+}
