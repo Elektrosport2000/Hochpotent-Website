@@ -49,7 +49,7 @@ export default function Navbar() {
         <div className="hidden md:block">
           <a
             href={buttons.navBooking.href}
-            className="bg-neon-violet hover:bg-white hover:text-black text-white font-display text-xl uppercase tracking-widest px-6 py-2 border border-neon-violet hover:border-white transition-all"
+            className="border border-white/30 hover:border-neon-violet hover:text-neon-violet text-white/70 font-display text-lg uppercase tracking-widest px-5 py-2 transition-all"
           >
             {buttons.navBooking.text}
           </a>
