@@ -10,17 +10,17 @@ export const impressum = `
 
 **Angaben gemäß § 5 TMG**
 
-Lilly Becker
-[STRASSE HAUSNUMMER]
-[PLZ] Kevelaer
+Guido Parzer
+Edith-Stein-Ring 1
+47623 Kevelaer
 
 **Kontakt**
 E-Mail: business@hochpotent.com
 
 **Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV**
-Lilly Becker
-[STRASSE HAUSNUMMER]
-[PLZ] Kevelaer
+Guido Parzer
+Edith-Stein-Ring 1
+47623 Kevelaer
 
 ---
 
@@ -52,9 +52,9 @@ export const datenschutz = `
 
 Verantwortlich für die Datenverarbeitung auf dieser Website:
 
-Lilly Becker
-[STRASSE HAUSNUMMER]
-[PLZ] Kevelaer
+Guido Parzer
+Edith-Stein-Ring 1
+47623 Kevelaer
 E-Mail: business@hochpotent.com
 
 ---
