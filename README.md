@@ -1,8 +1,8 @@
-# HOCHPOTENT — Official Website
+# HOCHPOTENT - Official Website
 
 > **Schranz & Hardtechno. High Energy. No Excuses.**
 
-Offizielle Website für DJ/Producer HOCHPOTENT. Gebaut für maximale Intensität – schnell, dunkel, ohne Kompromisse.
+Offizielle Website für DJ/Producer HOCHPOTENT. Gebaut für maximale Intensität - schnell, dunkel, ohne Kompromisse.
 
 ---
 
@@ -22,16 +22,71 @@ Offizielle Website für DJ/Producer HOCHPOTENT. Gebaut für maximale Intensität
 
 ```bash
 npm install
-npm run dev
+npm run dev        # http://localhost:3000
+npm run build      # Produktions-Build
+npm run preview    # Build lokal vorschauen
+npm run lint       # TypeScript-Check
 ```
 
-→ läuft auf `http://localhost:3000`
+---
 
-```bash
-npm run build    # Produktions-Build
-npm run preview  # Build lokal vorschauen
-npm run lint     # TypeScript-Check
+## Was wo anpassen
+
+### Buttons (Text + Links)
+**`src/data/buttons.ts`** - alle CTA-Buttons der Website zentral.
+Hier Text und Link ändern, ohne die Komponenten anzufassen.
+
+```ts
+heroBooking: { text: "Booking anfragen", href: "#contact" },
+instagram:   { text: "Auf Instagram folgen", href: "https://..." },
 ```
+
+### Gig-Dates
+**`src/data/dates.ts`** - alle Auftrittsdaten.
+Neuen Gig oben einfügen, die ersten 3 werden automatisch angezeigt.
+
+```ts
+{
+  date: "15", month: "MAR 2026",
+  name: "EVENTNAME", venue: "LOCATION, STADT",
+  artists: "",           // leer lassen wenn Solo
+  img: "/images/club-xyz.jpg",
+  link: "https://tickets.xyz",
+  sold_out: false,       // true zeigt "Sold Out"
+},
+```
+
+### Bio / Über mich
+**`src/data/bio.ts`** - Name, Tagline, Fließtext, Tags.
+
+```ts
+tagline: "Straight from the Underground",
+paragraphs: ["Absatz 1...", "Absatz 2..."],
+tags: ["Schranz", "NRW", "Kevelaer"],
+```
+
+### Venues (Played At Marquee)
+**`src/data/venues.ts`** - Liste der Clubs im scrollenden Marquee.
+
+### Sets / Tracks
+**`src/components/Sets.tsx`** - `tracks`-Array oben in der Datei.
+SoundCloud-URL tauschen um einen anderen Track einzubetten.
+
+---
+
+## Bilder
+
+Alle Bild-Pfade und empfohlene Größen: [`public/images/README.md`](public/images/README.md)
+
+| Bild | Größe | Max. |
+|---|---|---|
+| `logo.png` | min. 1600 px breit, PNG mit Transparenz | 300 KB |
+| `hero-bg.jpg` | 1920 x 1080 px | 400 KB |
+| `media-1.jpg` (Featured) | 1920 x 840 px | 300 KB |
+| `media-2` bis `media-9.jpg` | 800 x 800 px | 150 KB |
+| `club-*.jpg` | 1200 x 600 px | 200 KB |
+
+JPG-Qualität beim Export: **80-85 %**
 
 ---
 
@@ -40,21 +95,26 @@ npm run lint     # TypeScript-Check
 ```
 hochpotent/
 ├── public/
-│   ├── logo.png                  # Logo (PNG mit Transparenz)
-│   ├── images/                   # Alle Bilder → README.md beachten
-│   └── files/                    # Downloads (Tech-Rider, EPK, etc.)
+│   ├── logo.png
+│   ├── images/         # Bilder - README.md beachten
+│   └── files/          # Downloads (Tech-Rider, EPK, etc.)
 ├── src/
 │   ├── components/
 │   │   ├── Navbar.tsx
 │   │   ├── Hero.tsx
 │   │   ├── About.tsx
-│   │   ├── Dates.tsx             # liest aus data/dates.ts
+│   │   ├── Venues.tsx
 │   │   ├── Sets.tsx
+│   │   ├── Dates.tsx
 │   │   ├── Media.tsx
+│   │   ├── UeberMich.tsx
 │   │   ├── Contact.tsx
 │   │   └── Footer.tsx
 │   ├── data/
-│   │   └── dates.ts              # ← HIER Gig-Daten pflegen
+│   │   ├── buttons.ts    # Buttons: Text + Links
+│   │   ├── dates.ts      # Gig-Daten
+│   │   ├── bio.ts        # Über mich Text
+│   │   └── venues.ts     # Played At Liste
 │   ├── index.css
 │   └── main.tsx
 └── index.html
@@ -62,49 +122,6 @@ hochpotent/
 
 ---
 
-## Dates pflegen
-
-Neue Gigs werden ausschließlich in **`src/data/dates.ts`** eingetragen. Die Website zeigt automatisch die ersten 3 Einträge an.
-
-```ts
-{
-  date: "15",
-  month: "MAR 2026",
-  name: "EVENTNAME",
-  venue: "LOCATION — STADT",
-  artists: "WEITERE ACTS",   // leer lassen "" wenn Solo
-  img: "/images/club-xyz.jpg",
-  link: "https://tickets.xyz",
-  sold_out: false,           // true → zeigt "Sold Out" statt Button
-},
-```
-
-**Workflow für neue Dates:**
-1. Neuen Eintrag oben in die Liste in `dates.ts` einfügen
-2. Club-Bild in `public/images/` ablegen (`1200 × 600 px`, JPG, max. 200 KB)
-3. Alten Eintrag nach unten schieben oder löschen
-
----
-
-## Bilder ersetzen
-
-Alle Bild-Pfade und empfohlenen Größen stehen in [`public/images/README.md`](public/images/README.md).
-
-**Faustregel:**
-- Hero-Bild: `1920 × 1080 px`, max. 400 KB
-- Galerie-Featured: `1920 × 840 px`, max. 300 KB
-- Galerie-Grid: `800 × 800 px`, max. 150 KB
-- Club-Bilder: `1200 × 600 px`, max. 200 KB
-- JPG-Qualität beim Export: **80–85 %**
-
----
-
-## Kontakt / Booking
-
-Die E-Mail-Adresse für Booking-Anfragen steht in `src/components/Contact.tsx` – bei Bedarf dort anpassen.
-
----
-
 ## Lizenz
 
-Privates Projekt. Alle Rechte vorbehalten – HOCHPOTENT © 2025.
+Privates Projekt. Alle Rechte vorbehalten - HOCHPOTENT 2025.

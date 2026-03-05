@@ -1,19 +1,28 @@
+import { motion } from 'motion/react';
 import { Mail, Instagram, Music } from 'lucide-react';
+import { buttons } from '../data/buttons';
 
 export default function Contact() {
   return (
     <section id="contact" className="py-24 bg-dark-bg border-t border-white/5 relative overflow-hidden">
-      {/* Decorative background */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-neon-violet/5 blur-[150px] rounded-full pointer-events-none"></div>
-      
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-neon-violet/5 blur-[150px] rounded-full pointer-events-none" />
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-5 gap-16">
-          <div className="lg:col-span-2 relative">
+
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-2 relative"
+          >
             <div className="absolute inset-0 -mx-6 -my-24 lg:mx-0 lg:my-0 z-[-1] opacity-30 lg:opacity-50">
               <img src="/images/contact-bg.jpg" alt="Contact Background" className="w-full h-full object-cover filter grayscale contrast-125 mix-blend-screen" />
-              <div className="absolute inset-0 bg-gradient-to-r from-dark-bg via-dark-bg/80 to-transparent lg:hidden"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-dark-bg"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-dark-bg via-dark-bg/80 to-transparent lg:hidden" />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-dark-bg" />
             </div>
+
             <h2 className="font-display text-5xl md:text-7xl font-bold uppercase tracking-tight mb-6 mt-8 lg:mt-0">
               Book<span className="text-neon-cyan">ing</span>
             </h2>
@@ -52,9 +61,15 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="lg:col-span-3">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-3"
+          >
             <form className="bg-dark-surface border border-white/10 p-6 md:p-10" action="mailto:booking@hochpotent.com" method="POST" encType="text/plain">
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div>
@@ -66,28 +81,29 @@ export default function Contact() {
                   <input type="email" name="Email" className="w-full bg-black/50 border border-white/20 focus:border-neon-violet text-white px-4 py-3 outline-none font-body transition-colors" required />
                 </div>
               </div>
-              
+
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label className="block font-display text-lg uppercase tracking-wider text-gray-400 mb-2">Organisation / Club</label>
                   <input type="text" name="Organisation" className="w-full bg-black/50 border border-white/20 focus:border-neon-violet text-white px-4 py-3 outline-none font-body transition-colors" />
                 </div>
                 <div>
-                  <label className="block font-display text-lg uppercase tracking-wider text-gray-400 mb-2">Datum & Ort</label>
+                  <label className="block font-display text-lg uppercase tracking-wider text-gray-400 mb-2">Datum &amp; Ort</label>
                   <input type="text" name="Datum_Ort" className="w-full bg-black/50 border border-white/20 focus:border-neon-violet text-white px-4 py-3 outline-none font-body transition-colors" />
                 </div>
               </div>
 
               <div className="mb-8">
                 <label className="block font-display text-lg uppercase tracking-wider text-gray-400 mb-2">Nachricht *</label>
-                <textarea name="Nachricht" rows={5} className="w-full bg-black/50 border border-white/20 focus:border-neon-violet text-white px-4 py-3 outline-none font-body transition-colors resize-none" required></textarea>
+                <textarea name="Nachricht" rows={5} className="w-full bg-black/50 border border-white/20 focus:border-neon-violet text-white px-4 py-3 outline-none font-body transition-colors resize-none" required />
               </div>
 
               <button type="submit" className="w-full bg-neon-violet hover:bg-white hover:text-black text-white font-display text-2xl uppercase tracking-widest py-4 transition-colors">
-                Anfrage Senden
+                {buttons.contactSubmit.text}
               </button>
             </form>
-          </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

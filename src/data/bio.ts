@@ -1,13 +1,15 @@
 // ─────────────────────────────────────────────────────────────────
-//  ÜBER MICH – hier den Bio-Text pflegen
+//  ÜBER MICH – Bio-Text und Infos pflegen
 //  paragraphs: beliebig viele Absätze als Array eintragen
 //  tags: Schlagwörter die unter dem Text angezeigt werden
+//  tagline: kurze Zeile unter dem Titel
 // ─────────────────────────────────────────────────────────────────
 
 export const bio = {
   name: "Lilly Becker",
   alias: "HOCHPOTENT",
   location: "Kevelaer, NRW",
+  tagline: "Straight from the Underground",
   genres: ["Schranz", "Hardtechno", "Industrial"],
   paragraphs: [
     "Lilly Becker alias HOCHPOTENT ist eine junge DJane aus Kevelaer mit einer klaren Mission: den Dancefloor mit roher Energie und kompromisslosem Sound zu dominieren.",

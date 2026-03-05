@@ -3,9 +3,9 @@
 //
 //  Felder:
 //    date    → Tag als String,       z.B. "23"
-//    month   → Monat + Jahr,         z.B. "DEC 2025"
+//    month   → Monat + Jahr,         z.B. "DEZ 2025"
 //    name    → Event-Name,           z.B. "TECHNO KINGDOM"
-//    venue   → Location,             z.B. "DOCKS — HAMBURG"
+//    venue   → Location,             z.B. "DOCKS, HAMBURG"
 //    artists → weitere Artists,      z.B. "CARL CRAIG, LEN FAKI"
 //              (leer lassen "" wenn keine anderen Acts)
 //    img     → Pfad in public/,      z.B. "/images/club-docks.jpg"
@@ -30,9 +30,9 @@ export type Gig = {
 export const dates: Gig[] = [
   {
     date: "23",
-    month: "DEC 2025",
+    month: "DEZ 2025",
     name: "TECHNO KINGDOM",
-    venue: "DOCKS — HAMBURG",
+    venue: "DOCKS, HAMBURG",
     artists: "CARL CRAIG, GREEN VELVET, LEN FAKI",
     img: "/images/club-docks.jpg",
     link: "https://instagram.com/hochpotent",
@@ -42,7 +42,7 @@ export const dates: Gig[] = [
     date: "23",
     month: "NOV 2025",
     name: "FALLING STARS",
-    venue: "ODONIEN — KÖLN",
+    venue: "ODONIEN, KÖLN",
     artists: "ENRICO SANGIULIANO, CHRIS LIEBING, BLACK ASTEROID",
     img: "/images/club-odonien.jpg",
     link: "https://instagram.com/hochpotent",
@@ -52,7 +52,7 @@ export const dates: Gig[] = [
     date: "15",
     month: "OKT 2025",
     name: "DARK MATTER",
-    venue: "FLOWERS AND BEES — ESSEN",
+    venue: "FLOWERS AND BEES, ESSEN",
     artists: "",
     img: "/images/club-flowers-and-bees.jpg",
     link: "https://instagram.com/hochpotent",
