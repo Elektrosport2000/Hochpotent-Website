@@ -1,7 +1,10 @@
 import { motion } from 'motion/react';
+import { useT } from '../hooks/useT';
 import { buttons } from '../data/buttons';
 
 export default function Hero() {
+  const t = useT();
+
   return (
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden scanlines">
       <div
@@ -32,11 +35,11 @@ export default function Hero() {
           className="w-full"
         >
           <p className="font-body text-base md:text-xl text-gray-400 uppercase tracking-[0.25em] mb-10 max-w-2xl mx-auto">
-            Schranz &amp; Hardtechno · High Energy · No Excuses
+            {t.hero.subtitle}
           </p>
 
           <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {["Schranz / Hardtechno", "Peak-Time Sets", "Industrial Pressure"].map((tag) => (
+            {t.hero.tags.map((tag) => (
               <span key={tag} className="border border-white/15 px-4 py-1 font-display uppercase tracking-wider text-sm text-white/60 bg-black/40 backdrop-blur-sm">
                 {tag}
               </span>
@@ -48,13 +51,13 @@ export default function Hero() {
               href={buttons.heroBooking.href}
               className="bg-neon-violet hover:bg-white hover:text-black text-white font-display text-xl md:text-2xl uppercase tracking-widest px-10 py-4 transition-all duration-300"
             >
-              {buttons.heroBooking.text}
+              {t.hero.bookingBtn}
             </a>
             <a
               href={buttons.heroListen.href}
               className="border border-white/40 hover:border-white hover:bg-white/5 text-white font-display text-xl md:text-2xl uppercase tracking-widest px-10 py-4 transition-all duration-300"
             >
-              {buttons.heroListen.text}
+              {t.hero.listenBtn}
             </a>
           </div>
         </motion.div>

@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { Instagram, Music } from 'lucide-react';
 import LegalModal from './LegalModal';
 import { impressum, datenschutz } from '../data/legal';
+import { useT } from '../hooks/useT';
 
 type ModalType = 'impressum' | 'datenschutz' | null;
 
 export default function Footer() {
+  const t = useT();
   const [modal, setModal] = useState<ModalType>(null);
 
   return (
@@ -24,7 +26,7 @@ export default function Footer() {
                 }}
               />
               <span className="hidden font-display text-4xl font-bold tracking-wider text-white mb-2 block">HOCHPOTENT</span>
-              <p className="font-body text-gray-500 uppercase tracking-widest text-sm">Schranz &amp; Hardtechno</p>
+              <p className="font-body text-gray-500 uppercase tracking-widest text-sm">{t.footer.tagline}</p>
             </div>
 
             <div className="flex gap-6">
@@ -48,19 +50,19 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-gray-600 font-body text-sm uppercase tracking-wider gap-4">
-            <p>&copy; {new Date().getFullYear()} HOCHPOTENT. Alle Rechte vorbehalten.</p>
+            <p>&copy; {new Date().getFullYear()} HOCHPOTENT. {t.footer.rights}</p>
             <div className="flex gap-6">
               <button
                 onClick={() => setModal('impressum')}
                 className="hover:text-white transition-colors cursor-pointer"
               >
-                Impressum
+                {t.footer.impressum}
               </button>
               <button
                 onClick={() => setModal('datenschutz')}
                 className="hover:text-white transition-colors cursor-pointer"
               >
-                Datenschutz
+                {t.footer.datenschutz}
               </button>
             </div>
           </div>
@@ -68,10 +70,10 @@ export default function Footer() {
       </footer>
 
       {modal === 'impressum' && (
-        <LegalModal title="Impressum" content={impressum} onClose={() => setModal(null)} />
+        <LegalModal title={t.footer.impressum} content={impressum} closeLabel={t.footer.close} onClose={() => setModal(null)} />
       )}
       {modal === 'datenschutz' && (
-        <LegalModal title="Datenschutzerklärung" content={datenschutz} onClose={() => setModal(null)} />
+        <LegalModal title={t.footer.datenschutz} content={datenschutz} closeLabel={t.footer.close} onClose={() => setModal(null)} />
       )}
     </>
   );

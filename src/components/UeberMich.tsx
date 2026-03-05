@@ -1,13 +1,15 @@
 import { motion } from 'motion/react';
 import { Mail } from 'lucide-react';
+import { useT } from '../hooks/useT';
 import { bio } from '../data/bio';
 import { buttons } from '../data/buttons';
 
 export default function UeberMich() {
+  const t = useT();
+
   return (
     <section id="ueber-mich" className="py-24 bg-dark-surface border-t border-white/5">
       <div className="container mx-auto px-6 max-w-4xl">
-
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -16,10 +18,10 @@ export default function UeberMich() {
           className="text-center mb-16"
         >
           <h2 className="font-display text-5xl md:text-7xl font-bold uppercase tracking-tight mb-3">
-            Über <span className="text-neon-violet">Mich</span>
+            {t.ueberMich.heading} <span className="text-neon-violet">{t.ueberMich.headingAccent}</span>
           </h2>
           <p className="font-body text-lg text-gray-400 uppercase tracking-widest mb-2">
-            {bio.alias} aus {bio.location}
+            {bio.alias} {t.ueberMich.locationPrefix} {bio.location}
           </p>
           <p className="font-display text-2xl md:text-3xl text-white/60 uppercase tracking-widest">
             {bio.tagline}
@@ -34,7 +36,7 @@ export default function UeberMich() {
           className="bg-black/50 border border-white/10 p-8 md:p-12"
         >
           <div className="space-y-6 mb-10">
-            {bio.paragraphs.map((p, i) => (
+            {t.ueberMich.paragraphs.map((p, i) => (
               <motion.p
                 key={i}
                 initial={{ opacity: 0, y: 15 }}
@@ -58,15 +60,15 @@ export default function UeberMich() {
 
           <div className="border border-neon-violet/30 bg-neon-violet/5 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <p className="font-display text-2xl uppercase tracking-widest text-white mb-1">Presskit</p>
-              <p className="font-body text-gray-400 text-sm uppercase tracking-widest">Tech Rider · Pressefotos · EPK - nur auf Anfrage</p>
+              <p className="font-display text-2xl uppercase tracking-widest text-white mb-1">{t.ueberMich.presskitHeading}</p>
+              <p className="font-body text-gray-400 text-sm uppercase tracking-widest">{t.ueberMich.presskitSub}</p>
             </div>
             <a
               href={buttons.presskit.href}
               className="flex-shrink-0 inline-flex items-center gap-2 bg-neon-violet hover:bg-white hover:text-black text-white font-display text-xl uppercase tracking-widest px-8 py-3 transition-colors"
             >
               <Mail size={18} />
-              {buttons.presskit.text}
+              {t.ueberMich.presskitBtn}
             </a>
           </div>
         </motion.div>

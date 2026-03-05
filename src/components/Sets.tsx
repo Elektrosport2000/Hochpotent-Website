@@ -1,14 +1,9 @@
 import { motion } from 'motion/react';
 import { ExternalLink } from 'lucide-react';
+import { useT } from '../hooks/useT';
 import { buttons } from '../data/buttons';
 
-// ─────────────────────────────────────────────────────────────────
-//  SETS – SoundCloud Tracks & YouTube
-//  URL tauschen um einen anderen Track einzubetten.
-//  SoundCloud-URL-Schema:
-//  https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/hochpotent/TRACK-NAME&color=%23ff003c&...
-// ─────────────────────────────────────────────────────────────────
-
+// SoundCloud-URL tauschen um einen anderen Track einzubetten
 const tracks = [
   {
     label: "Läuft noch",
@@ -21,10 +16,11 @@ const tracks = [
 ];
 
 export default function Sets() {
+  const t = useT();
+
   return (
     <section id="sets" className="py-24 bg-dark-bg">
       <div className="container mx-auto px-6">
-
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -34,9 +30,9 @@ export default function Sets() {
         >
           <div>
             <h2 className="font-display text-5xl md:text-7xl font-bold uppercase tracking-tight">
-              Latest <span className="text-neon-cyan">Sets</span>
+              {t.sets.heading} <span className="text-neon-cyan">{t.sets.headingAccent}</span>
             </h2>
-            <p className="font-body text-lg text-gray-400 mt-2 uppercase tracking-widest">Listen to the pressure</p>
+            <p className="font-body text-lg text-gray-400 mt-2 uppercase tracking-widest">{t.sets.subtitle}</p>
           </div>
           <a
             href={buttons.soundcloud.href}
@@ -44,7 +40,7 @@ export default function Sets() {
             rel="noopener noreferrer"
             className="border border-white/20 hover:border-neon-cyan hover:text-neon-cyan px-6 py-3 font-display text-xl uppercase tracking-widest transition-colors flex items-center gap-2 flex-shrink-0"
           >
-            {buttons.soundcloud.text} <ExternalLink size={18} />
+            {t.sets.soundcloudBtn} <ExternalLink size={18} />
           </a>
         </motion.div>
 

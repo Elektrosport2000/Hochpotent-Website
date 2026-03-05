@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
+import { useT } from '../hooks/useT';
 import { buttons } from '../data/buttons';
 
-// Bilder einfach hier ergänzen - Dateien in public/images/ ablegen
 const images = [
   "/images/media-1.jpg",
   "/images/media-2.jpg",
@@ -15,12 +15,12 @@ const images = [
 ];
 
 export default function Media() {
+  const t = useT();
   const [featured, ...rest] = images;
 
   return (
     <section id="media" className="py-24 bg-dark-bg">
       <div className="container mx-auto px-6">
-
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -29,7 +29,7 @@ export default function Media() {
           className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
         >
           <h2 className="font-display text-5xl md:text-7xl font-bold uppercase tracking-tight">
-            Visual <span className="text-neon-cyan">Impact</span>
+            {t.media.heading} <span className="text-neon-cyan">{t.media.headingAccent}</span>
           </h2>
           <a
             href={buttons.instagramHandle.href}
@@ -37,11 +37,10 @@ export default function Media() {
             rel="noopener noreferrer"
             className="border border-white/20 hover:border-neon-violet hover:text-neon-violet px-6 py-3 font-display text-xl uppercase tracking-widest transition-colors flex-shrink-0"
           >
-            {buttons.instagramHandle.text}
+            {t.media.handle}
           </a>
         </motion.div>
 
-        {/* Featured Bild */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -58,7 +57,6 @@ export default function Media() {
           />
         </motion.div>
 
-        {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {rest.map((src, i) => (
             <motion.div
@@ -79,7 +77,6 @@ export default function Media() {
           ))}
         </div>
 
-        {/* Instagram CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -88,8 +85,8 @@ export default function Media() {
           className="border border-white/10 bg-dark-surface p-10 flex flex-col md:flex-row items-center justify-between gap-6"
         >
           <div>
-            <p className="font-display text-3xl md:text-4xl uppercase tracking-widest text-white mb-1">Mehr auf Instagram</p>
-            <p className="font-body text-gray-400 text-lg">Backstage, Sets, Behind the Scenes</p>
+            <p className="font-display text-3xl md:text-4xl uppercase tracking-widest text-white mb-1">{t.media.instagramCta}</p>
+            <p className="font-body text-gray-400 text-lg">{t.media.instagramSub}</p>
           </div>
           <a
             href={buttons.instagram.href}
@@ -97,10 +94,9 @@ export default function Media() {
             rel="noopener noreferrer"
             className="flex-shrink-0 bg-neon-violet hover:bg-white hover:text-black text-white font-display text-xl uppercase tracking-widest px-10 py-4 transition-colors"
           >
-            {buttons.instagram.text}
+            {t.media.instagramBtn}
           </a>
         </motion.div>
-
       </div>
     </section>
   );

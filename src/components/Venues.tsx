@@ -1,12 +1,14 @@
+import { useT } from '../hooks/useT';
 import { venues } from '../data/venues';
 
 export default function Venues() {
+  const t = useT();
   const repeated = [...venues, ...venues, ...venues, ...venues];
 
   return (
     <section className="py-16 bg-dark-surface border-y border-white/5 overflow-hidden">
       <div className="container mx-auto px-6 mb-8 text-center">
-        <h3 className="font-display text-3xl text-gray-400 uppercase tracking-widest">Played At</h3>
+        <h3 className="font-display text-3xl text-gray-400 uppercase tracking-widest">{t.venues.heading}</h3>
       </div>
 
       <div className="flex w-full overflow-hidden">
@@ -34,7 +36,7 @@ export default function Venues() {
       </div>
 
       <div className="container mx-auto px-6 mt-8 text-center">
-        <p className="font-body text-gray-500 uppercase tracking-widest text-sm">Auszug - vollständige Liste auf Anfrage.</p>
+        <p className="font-body text-gray-500 uppercase tracking-widest text-sm">{t.venues.note}</p>
       </div>
     </section>
   );

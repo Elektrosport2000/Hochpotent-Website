@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useLang } from '../context/LanguageContext';
+import { useT } from '../hooks/useT';
 import { buttons } from '../data/buttons';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { lang, toggle } = useLang();
+  const t = useT();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -13,12 +17,12 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Dates', href: '#dates' },
-    { name: 'Sets', href: '#sets' },
-    { name: 'Media', href: '#media' },
-    { name: 'Über mich', href: '#ueber-mich' },
-    { name: 'Contact', href: '#contact' },
+    { name: t.nav.home,    href: '#home' },
+    { name: t.nav.dates,   href: '#dates' },
+    { name: t.nav.sets,    href: '#sets' },
+    { name: t.nav.media,   href: '#media' },
+    { name: t.nav.about,   href: '#ueber-mich' },
+    { name: t.nav.contact, href: '#contact' },
   ];
 
   return (
@@ -46,12 +50,29 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-4">
+          {/* Sprachumschalter */}
+          <div className="flex items-center gap-1 font-display text-base uppercase tracking-widest">
+            <button
+              onClick={() => lang !== 'de' && toggle()}
+              className={`px-2 py-1 transition-colors ${lang === 'de' ? 'text-white' : 'text-white/30 hover:text-white/60'}`}
+            >
+              DE
+            </button>
+            <span className="text-white/20">|</span>
+            <button
+              onClick={() => lang !== 'en' && toggle()}
+              className={`px-2 py-1 transition-colors ${lang === 'en' ? 'text-white' : 'text-white/30 hover:text-white/60'}`}
+            >
+              EN
+            </button>
+          </div>
+
           <a
             href={buttons.navBooking.href}
             className="border border-white/30 hover:border-neon-violet hover:text-neon-violet text-white/70 font-display text-lg uppercase tracking-widest px-5 py-2 transition-all"
           >
-            {buttons.navBooking.text}
+            {t.nav.booking}
           </a>
         </div>
 
@@ -73,13 +94,31 @@ export default function Navbar() {
               {link.name}
             </a>
           ))}
-          <a
-            href={buttons.navBooking.href}
-            className="bg-neon-violet text-white font-display text-xl uppercase tracking-widest px-6 py-3 text-center mt-2"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            {buttons.navBooking.text}
-          </a>
+          <div className="flex items-center justify-between mt-2">
+            <a
+              href={buttons.navBooking.href}
+              className="bg-neon-violet text-white font-display text-xl uppercase tracking-widest px-6 py-3 text-center"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {t.nav.booking}
+            </a>
+            {/* Sprachumschalter Mobile */}
+            <div className="flex items-center gap-2 font-display text-xl uppercase tracking-widest">
+              <button
+                onClick={() => { lang !== 'de' && toggle(); }}
+                className={lang === 'de' ? 'text-white' : 'text-white/30'}
+              >
+                DE
+              </button>
+              <span className="text-white/20">|</span>
+              <button
+                onClick={() => { lang !== 'en' && toggle(); }}
+                className={lang === 'en' ? 'text-white' : 'text-white/30'}
+              >
+                EN
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </header>

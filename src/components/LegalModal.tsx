@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 type Props = {
   title: string;
   content: string;
+  closeLabel?: string;
   onClose: () => void;
 };
 
@@ -40,7 +41,7 @@ function parseInline(text: string): React.ReactNode {
   );
 }
 
-export default function LegalModal({ title, content, onClose }: Props) {
+export default function LegalModal({ title, content, closeLabel = 'Schließen', onClose }: Props) {
   // ESC zum Schließen
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
@@ -73,7 +74,7 @@ export default function LegalModal({ title, content, onClose }: Props) {
           <button
             onClick={onClose}
             className="w-9 h-9 flex items-center justify-center border border-white/20 hover:border-neon-violet hover:text-neon-violet transition-colors"
-            aria-label="Schließen"
+            aria-label={closeLabel}
           >
             <X size={18} />
           </button>
@@ -90,7 +91,7 @@ export default function LegalModal({ title, content, onClose }: Props) {
             onClick={onClose}
             className="w-full font-display text-lg uppercase tracking-widest text-gray-500 hover:text-white transition-colors py-2"
           >
-            Schließen
+            {closeLabel}
           </button>
         </div>
       </div>
