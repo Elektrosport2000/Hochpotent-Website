@@ -1,8 +1,42 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Mail, Instagram, Music } from 'lucide-react';
 import { buttons } from '../data/buttons';
 
+const EMAIL = 'business@hochpotent.com';
+
 export default function Contact() {
+  const [honeypot, setHoneypot] = useState('');
+  const [sent, setSent] = useState(false);
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    // Honeypot: Feld ausgefüllt = Bot → still abbrechen
+    if (honeypot) return;
+
+    const form = e.currentTarget;
+    const name     = (form.elements.namedItem('Name')        as HTMLInputElement).value;
+    const email    = (form.elements.namedItem('Email')       as HTMLInputElement).value;
+    const org      = (form.elements.namedItem('Organisation') as HTMLInputElement).value;
+    const date     = (form.elements.namedItem('Datum_Ort')   as HTMLInputElement).value;
+    const message  = (form.elements.namedItem('Nachricht')   as HTMLTextAreaElement).value;
+
+    const body = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      org   ? `Organisation: ${org}` : '',
+      date  ? `Datum & Ort: ${date}` : '',
+      `\nNachricht:\n${message}`,
+    ].filter(Boolean).join('\n');
+
+    window.location.href =
+      `mailto:${EMAIL}?subject=${encodeURIComponent('Booking-Anfrage von ' + name)}&body=${encodeURIComponent(body)}`;
+
+    setSent(true);
+    setTimeout(() => setSent(false), 4000);
+  }
+
   return (
     <section id="contact" className="py-24 bg-dark-bg border-t border-white/5 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-1/2 h-full bg-neon-violet/5 blur-[150px] rounded-full pointer-events-none" />
@@ -37,7 +71,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-display text-xl uppercase tracking-wider text-gray-500 mb-1">Email</h4>
-                  <a href="mailto:booking@hochpotent.com" className="font-body text-xl hover:text-neon-cyan transition-colors">booking@hochpotent.com</a>
+                  <a href={`mailto:${EMAIL}`} className="font-body text-xl hover:text-neon-cyan transition-colors">{EMAIL}</a>
                 </div>
               </div>
 
@@ -70,7 +104,22 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-3"
           >
-            <form className="bg-dark-surface border border-white/10 p-6 md:p-10" action="mailto:booking@hochpotent.com" method="POST" encType="text/plain">
+            <form onSubmit={handleSubmit} className="bg-dark-surface border border-white/10 p-6 md:p-10">
+
+              {/* Honeypot – für Bots unsichtbar, Menschen füllen es nie aus */}
+              <div style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, height: 0, width: 0, overflow: 'hidden' }} aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
+
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label className="block font-display text-lg uppercase tracking-wider text-gray-400 mb-2">Name *</label>
@@ -98,8 +147,11 @@ export default function Contact() {
                 <textarea name="Nachricht" rows={5} className="w-full bg-black/50 border border-white/20 focus:border-neon-violet text-white px-4 py-3 outline-none font-body transition-colors resize-none" required />
               </div>
 
-              <button type="submit" className="w-full bg-neon-violet hover:bg-white hover:text-black text-white font-display text-2xl uppercase tracking-widest py-4 transition-colors">
-                {buttons.contactSubmit.text}
+              <button
+                type="submit"
+                className="w-full bg-neon-violet hover:bg-white hover:text-black text-white font-display text-2xl uppercase tracking-widest py-4 transition-colors disabled:opacity-50"
+              >
+                {sent ? 'E-Mail-Programm wird geöffnet...' : buttons.contactSubmit.text}
               </button>
             </form>
           </motion.div>

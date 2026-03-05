@@ -42,7 +42,7 @@ export const buttons = {
   // Über mich - Presskit
   presskit: {
     text: "Presskit anfragen",
-    href: "mailto:booking@hochpotent.com?subject=Presskit%20Anfrage&body=Hallo%2C%0A%0Aich%20m%C3%B6chte%20das%20Presskit%20von%20HOCHPOTENT%20anfordern.%0A%0AMein%20Medium%20%2F%20Organisation%3A%20",
+    href: "mailto:business@hochpotent.com?subject=Presskit%20Anfrage&body=Hallo%2C%0A%0Aich%20m%C3%B6chte%20das%20Presskit%20von%20HOCHPOTENT%20anfordern.%0A%0AMein%20Medium%20%2F%20Organisation%3A%20",
   },
 
   // Kontakt-Formular (Submit-Button, kein Link)

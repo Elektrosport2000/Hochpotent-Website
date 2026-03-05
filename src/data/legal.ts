@@ -15,7 +15,7 @@ Lilly Becker
 [PLZ] Kevelaer
 
 **Kontakt**
-E-Mail: booking@hochpotent.com
+E-Mail: business@hochpotent.com
 
 **Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV**
 Lilly Becker
@@ -55,7 +55,7 @@ Verantwortlich für die Datenverarbeitung auf dieser Website:
 Lilly Becker
 [STRASSE HAUSNUMMER]
 [PLZ] Kevelaer
-E-Mail: booking@hochpotent.com
+E-Mail: business@hochpotent.com
 
 ---
 
@@ -119,7 +119,7 @@ Du hast das Recht auf:
 - **Datenübertragbarkeit** (Art. 20 DSGVO)
 - **Widerspruch** gegen die Verarbeitung (Art. 21 DSGVO)
 
-Zur Ausübung dieser Rechte wende dich an: booking@hochpotent.com
+Zur Ausübung dieser Rechte wende dich an: business@hochpotent.com
 
 Du hast außerdem das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Die zuständige Aufsichtsbehörde für Nordrhein-Westfalen ist der Landesbeauftragte für Datenschutz und Informationsfreiheit NRW (www.ldi.nrw.de).
 
