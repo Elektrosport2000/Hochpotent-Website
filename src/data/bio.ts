@@ -16,5 +16,5 @@ export const bio = {
     "Mit einer Leidenschaft für Schranz und Hardtechno, die tief in ihr verwurzelt ist, steht sie für Ambition, Power und die Weigerung aufzugeben – egal was kommt. Was andere als Hindernis sehen, ist für sie Antrieb.",
     "Was in einem kleinen Ort am Niederrhein begann, hat sich zu einer Karriere entwickelt, die Bühnen von Hamburg bis Köln bespielt. HOCHPOTENT ist kein Alias – es ist ein Statement.",
   ],
-  tags: ["Peak-Time", "Schranz", "Hardtechno", "NRW", "Kevelaer"],
+  tags: ["Peak-Time", "Schranz", "Hardtechno", "NRW", "Kevelaer♡", "Backflips"],
 };
