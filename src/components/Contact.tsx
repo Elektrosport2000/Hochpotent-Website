@@ -2,7 +2,7 @@ import { Mail, Instagram, Music } from 'lucide-react';
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 pb-32 md:pb-24 bg-dark-bg border-t border-white/5 relative overflow-hidden">
+    <section id="contact" className="py-24 bg-dark-bg border-t border-white/5 relative overflow-hidden">
       {/* Decorative background */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-neon-violet/5 blur-[150px] rounded-full pointer-events-none"></div>
       

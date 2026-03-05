@@ -21,12 +21,11 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 
-            className="font-display text-6xl md:text-9xl lg:text-[12rem] font-bold uppercase tracking-tighter leading-none mb-4 glitch"
-            data-text="HOCHPOTENT"
-          >
-            HOCHPOTENT
-          </h1>
+          <img
+            src="/logo.png"
+            alt="HOCHPOTENT"
+            className="w-full max-w-[320px] sm:max-w-[480px] md:max-w-[700px] lg:max-w-[960px] mx-auto mb-4 object-contain drop-shadow-[0_0_40px_rgba(255,0,60,0.3)]"
+          />
           <p className="font-body text-xl md:text-2xl text-gray-300 uppercase tracking-[0.2em] mb-10 max-w-3xl mx-auto">
             SCHRANZ & HARDTECHNO. HIGH ENERGY. NO EXCUSES. INTENSE BACKFLIPS.
           </p>

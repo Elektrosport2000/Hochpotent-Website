@@ -5,7 +5,7 @@ import Venues from './components/Venues';
 import Sets from './components/Sets';
 import Dates from './components/Dates';
 import Media from './components/Media';
-import Presskit from './components/Presskit';
+import UeberMich from './components/UeberMich';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -20,7 +20,7 @@ export default function App() {
         <Sets />
         <Dates />
         <Media />
-        <Presskit />
+        <UeberMich />
         <Contact />
       </main>
       <Footer />

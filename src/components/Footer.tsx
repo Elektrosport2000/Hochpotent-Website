@@ -34,12 +34,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Sticky Mobile CTA */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 p-4 bg-gradient-to-t from-black via-black to-transparent">
-        <a href="#contact" className="block w-full bg-neon-violet text-white text-center font-display text-xl uppercase tracking-widest py-4 shadow-[0_0_20px_rgba(176,38,255,0.3)]">
-          Booking
-        </a>
-      </div>
     </footer>
   );
 }

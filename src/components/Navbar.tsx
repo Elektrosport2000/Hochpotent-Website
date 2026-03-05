@@ -18,7 +18,7 @@ export default function Navbar() {
     { name: 'Dates', href: '#dates' },
     { name: 'Sets', href: '#sets' },
     { name: 'Media', href: '#media' },
-    { name: 'Presskit', href: '#presskit' },
+    { name: 'Über mich', href: '#ueber-mich' },
     { name: 'Contact', href: '#contact' },
   ];
 
