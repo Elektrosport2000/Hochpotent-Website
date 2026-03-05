@@ -56,7 +56,7 @@ export default function Sets() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="w-full bg-dark-surface border border-white/10 p-2"
+              className="w-full bg-[#111] border border-white/10 overflow-hidden"
             >
               <iframe
                 width="100%"
@@ -65,7 +65,7 @@ export default function Sets() {
                 frameBorder="no"
                 allow="autoplay"
                 src={track.src}
-                style={{ filter: 'invert(1) hue-rotate(180deg)', display: 'block' }}
+                style={{ display: 'block', marginBottom: '-6px' }}
               />
             </motion.div>
           ))}

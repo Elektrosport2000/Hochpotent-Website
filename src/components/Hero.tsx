@@ -5,12 +5,11 @@ export default function Hero() {
   return (
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden scanlines">
       <div
-        className="absolute inset-0 z-0 opacity-40"
+        className="absolute inset-0 z-0 opacity-60"
         style={{
           backgroundImage: 'url("/images/hero-bg.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          filter: 'grayscale(100%) contrast(120%)'
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dark-bg/50 to-dark-bg z-0" />
@@ -19,9 +18,10 @@ export default function Hero() {
         <motion.img
           src="/logo.png"
           alt="HOCHPOTENT"
-          className="w-full max-w-[320px] sm:max-w-[480px] md:max-w-[700px] lg:max-w-[960px] mx-auto mb-8 object-contain drop-shadow-[0_0_60px_rgba(255,0,60,0.4)]"
+          className="w-full max-w-[320px] sm:max-w-[480px] md:max-w-[700px] lg:max-w-[960px] mx-auto mb-8 object-contain drop-shadow-[0_0_60px_rgba(255,0,60,0.4)] cursor-pointer"
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.03, filter: 'drop-shadow(0 0 80px rgba(255,0,60,0.7))' }}
           transition={{ duration: 1.2, ease: "easeOut" }}
         />
 
