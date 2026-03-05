@@ -1,4 +1,4 @@
-import { Download, FileText, Image as ImageIcon } from 'lucide-react';
+import { Mail, Lock } from 'lucide-react';
 
 export default function Presskit() {
   return (
@@ -29,29 +29,32 @@ export default function Presskit() {
 
             <div>
               <h3 className="font-display text-3xl uppercase tracking-wider mb-6 border-b border-white/10 pb-4">Downloads</h3>
-              <div className="space-y-4 flex flex-col">
-                {/* Update the href to point to your actual files in the public folder */}
-                <a href="/files/tech-rider.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between bg-dark-surface hover:bg-white/5 border border-white/10 p-4 transition-colors group">
-                  <div className="flex items-center gap-3">
-                    <FileText className="text-neon-cyan group-hover:text-white transition-colors" />
-                    <span className="font-display text-xl uppercase tracking-wider">Tech Rider (PDF)</span>
-                  </div>
-                  <Download size={20} className="text-gray-500 group-hover:text-white" />
-                </a>
-                
-                {/* Update the href to point to your actual files in the public folder */}
-                <a href="/files/press-photos.zip" className="flex items-center justify-between bg-dark-surface hover:bg-white/5 border border-white/10 p-4 transition-colors group">
-                  <div className="flex items-center gap-3">
-                    <ImageIcon className="text-neon-violet group-hover:text-white transition-colors" />
-                    <span className="font-display text-xl uppercase tracking-wider">Press Photos (ZIP)</span>
-                  </div>
-                  <Download size={20} className="text-gray-500 group-hover:text-white" />
-                </a>
 
-                {/* Update the href to point to your actual files in the public folder */}
-                <a href="/files/epk-hochpotent.zip" className="flex items-center justify-between bg-neon-violet hover:bg-white hover:text-black text-white p-4 transition-colors group mt-4">
-                  <span className="font-display text-xl uppercase tracking-wider font-bold">Download Full EPK</span>
-                  <Download size={20} />
+              {/* Gesperrte Download-Items */}
+              <div className="space-y-3 mb-8">
+                {[
+                  { label: "Tech Rider (PDF)" },
+                  { label: "Press Photos (ZIP)" },
+                  { label: "Full EPK (ZIP)" },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-center justify-between bg-dark-surface border border-white/10 p-4 opacity-50 cursor-not-allowed select-none">
+                    <span className="font-display text-xl uppercase tracking-wider text-gray-400">{item.label}</span>
+                    <Lock size={18} className="text-gray-600" />
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA */}
+              <div className="border border-neon-violet/30 bg-neon-violet/5 p-6 text-center">
+                <p className="font-body text-gray-300 text-sm uppercase tracking-widest mb-4">
+                  Pressematerial nur auf Anfrage
+                </p>
+                <a
+                  href="mailto:booking@hochpotent.com?subject=Presskit%20Anfrage&body=Hallo%2C%0A%0Aich%20w%C3%BCrde%20gerne%20das%20Presskit%20von%20HOCHPOTENT%20anfordern.%0A%0AMein%20Medium%2FOrganisation%3A%20"
+                  className="inline-flex items-center gap-2 bg-neon-violet hover:bg-white hover:text-black text-white font-display text-xl uppercase tracking-widest px-8 py-3 transition-colors"
+                >
+                  <Mail size={18} />
+                  Presskit anfragen
                 </a>
               </div>
             </div>
