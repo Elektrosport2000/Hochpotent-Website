@@ -1,4 +1,5 @@
-tro// ─────────────────────────────────────────────────────────────────
+tro
+// ─────────────────────────────────────────────────────────────────
 //  RECHTLICHE TEXTE – Impressum & Datenschutzerklärung
 //
 //  WICHTIG: Alle mit [PLATZHALTER] markierten Felder ausfüllen!
