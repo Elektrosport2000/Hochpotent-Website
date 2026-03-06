@@ -1,4 +1,4 @@
-// ─────────────────────────────────────────────────────────────────
+tro// ─────────────────────────────────────────────────────────────────
 //  RECHTLICHE TEXTE – Impressum & Datenschutzerklärung
 //
 //  WICHTIG: Alle mit [PLATZHALTER] markierten Felder ausfüllen!
@@ -10,16 +10,16 @@ export const impressum = `
 
 **Angaben gemäß § 5 TMG**
 
-Guido Parzer
-Edith-Stein-Ring 1
+Elektrosport
+Elektrosportstr. 1
 47623 Kevelaer
 
 **Kontakt**
 E-Mail: business@hochpotent.com
 
 **Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV**
-Guido Parzer
-Edith-Stein-Ring 1
+Elektrosport
+Elektrosportstr. 1
 47623 Kevelaer
 
 ---
@@ -52,8 +52,8 @@ export const datenschutz = `
 
 Verantwortlich für die Datenverarbeitung auf dieser Website:
 
-Guido Parzer
-Edith-Stein-Ring 1
+Elektrosport
+Elektrosportstr. 1
 47623 Kevelaer
 E-Mail: business@hochpotent.com
 
