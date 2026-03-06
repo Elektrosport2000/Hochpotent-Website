@@ -12,13 +12,11 @@ export type Venue = {
 
 export const venues: Venue[] = [
   { name: "Amphoria Kevelaer",     url: "" },
-  { name: "Docks Hamburg",         url: "https://www.dockshamburg.de" },
-  { name: "Dogs",                  url: "" },
-  { name: "Ehrenclub",             url: "" },
+  { name: "Docks Hamburg",         url: "" },
   { name: "Odonien",               url: "https://www.odonien.de" },
-  { name: "Bootshaus",             url: "https://www.bootshaus.tv" },
-  { name: "Fusion Club",           url: "" },
+  { name: "Impulz Techno",           url: "" },
   { name: "Helios37",              url: "" },
   { name: "Box Mönchengladbach",   url: "" },
-  { name: "Flowers and Bees Essen",url: "" },
+  { name: "Flowers and Bees",url: "" },
+  { name: "Club Vier Sieben",url: "" },
 ];
