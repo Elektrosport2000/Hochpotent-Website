@@ -1,4 +1,3 @@
-tro
 // ─────────────────────────────────────────────────────────────────
 //  RECHTLICHE TEXTE – Impressum & Datenschutzerklärung
 //
