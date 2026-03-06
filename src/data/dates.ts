@@ -29,13 +29,13 @@ export type Gig = {
 
 export const dates: Gig[] = [
   {
-    date: "23",
-    month: "DEZ 2025",
-    name: "TECHNO KINGDOM",
-    venue: "DOCKS, HAMBURG",
-    artists: "CARL CRAIG, GREEN VELVET, LEN FAKI",
+    date: "1",
+    month: "JAN 2026",
+    name: "COMING SOON",
+    venue: "CLUB, STADT",
+    artists: "ELEKTRO POTENT,ELEKTRSPORT, STEVE",
     img: "/images/club-docks.jpg",
-    link: "https://instagram.com/hochpotent",
+    link: "https://img.freepik.com/vektoren-kostenlos/bald-hintergrund-mit-fokus-lichteffekt-design_1017-27277.jpg?semt=ais_rp_progressive&w=740&q=80",
     sold_out: false,
   },
   {
