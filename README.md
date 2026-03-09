@@ -271,7 +271,7 @@ hochpotent/
 ## Kontakt / Impressum
 
 E-Mail: business@hochpotent.com
-Verantwortlich: Guido Parzer, Edith-Stein-Ring 1, 47623 Kevelaer
+Verantwortlich: Elektrosport, Elektrosportstr.1, 47623 Kevelaer
 
 ---
 
