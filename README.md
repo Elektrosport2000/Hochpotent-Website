@@ -45,7 +45,7 @@ Text und Link hier ändern - wirkt sich automatisch überall aus.
 | `soundcloud` | "Mehr auf SoundCloud" | Sets-Sektion |
 | `instagram` | "Auf Instagram folgen" | Media-Sektion unten |
 | `instagramHandle` | "@hochpotent" | Media-Sektion oben rechts |
-| `presskit` | "Presskit anfragen" | Über mich - Presskit-Block |
+| `presskit` | "Presskit anfragen" | Über - Presskit-Block |
 | `contactSubmit` | "Anfrage senden" | Kontakt-Formular |
 | `datesDetails` | "Details" | Jeder Gig-Eintrag |
 | `datesBooking` | "Booking anfragen" | Fallback wenn keine Dates |
@@ -111,7 +111,7 @@ heroBooking: {
 
 ---
 
-### Bio / Über mich - `src/data/bio.ts`
+### Bio / Über - `src/data/bio.ts`
 
 **Der persönliche Bereich mit Freitext, Tagline und Schlagwörtern.**
 
@@ -169,9 +169,9 @@ Das YouTube-Video ist direkt in `Sets.tsx` eingebettet - einfach die YouTube-ID 
 
 ---
 
-### Galerie - `src/components/Media.tsx`
+### Galerie & Videos - `src/components/Media.tsx`
 
-**Fotos im Array oben in der Datei verwalten.**
+**Fotos und Videos im Array oben in der Datei verwalten.**
 
 ```ts
 const images = [
@@ -179,9 +179,16 @@ const images = [
   "/images/media-2.jpg",   // alle weiteren im 4-spaltigen Grid
   // weitere Bilder einfach ergänzen
 ];
+
+// YouTube-Videos als Raster unterhalb der Galerie anzeigen:
+const videos = [
+  { id: 'YOUTUBE_VIDEO_ID', label: 'Live @ Club XY' },
+  // weitere Videos ergänzen – Array leer = kein Video-Bereich
+];
 ```
 
-Bilder in `public/images/` hochladen, dann Pfad hier eintragen.
+Bilder in `public/images/` hochladen, dann Pfad in `images[]` eintragen.
+Videos: YouTube-Video-ID aus der URL kopieren (z.B. `dQw4w9WgXcQ` aus `youtu.be/dQw4w9WgXcQ`).
 
 ---
 
@@ -189,10 +196,9 @@ Bilder in `public/images/` hochladen, dann Pfad hier eintragen.
 
 **Beide Rechtstexte vollständig befüllt.**
 
-Verantwortlicher: Guido Parzer, Edith-Stein-Ring 1, 47623 Kevelaer
-E-Mail: business@hochpotent.com
+E-Mail: info@hochpotent.com
 
-Bei Änderungen (z.B. Adresse, neue eingebettete Dienste) direkt in dieser Datei anpassen. Die Texte werden als Popup im Footer angezeigt.
+Bei Änderungen (z.B. neue eingebettete Dienste) direkt in dieser Datei anpassen. Die Texte werden als Popup im Footer angezeigt.
 
 ---
 
@@ -268,10 +274,9 @@ hochpotent/
 
 ---
 
-## Kontakt / Impressum
+## Kontakt
 
-E-Mail: business@hochpotent.com
-Verantwortlich: Guido Parzer, Edith-Stein-Ring 1, 47623 Kevelaer
+E-Mail: info@hochpotent.com
 
 ---
 

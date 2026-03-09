@@ -16,6 +16,13 @@ const images = [
   "/images/media-7.jpg",
   "/images/media-8.jpg",
   "/images/media-9.jpg",
+  // Weitere Bilder hier ergänzen: "/images/media-10.jpg"
+];
+
+// Videos: YouTube-ID oder Pfad zu lokalem Video eintragen
+// Beispiel: { id: 'dQw4w9WgXcQ', label: 'Live @ Club XY' }
+const videos: { id: string; label: string }[] = [
+  // { id: 'YOUTUBE_VIDEO_ID', label: 'Live Set' },
 ];
 
 const stats = [
@@ -142,6 +149,31 @@ export default function Media() {
             </motion.div>
           ))}
         </div>
+
+        {/* Video Grid */}
+        {videos.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 md:mb-12">
+            {videos.map((video, i) => (
+              <motion.div
+                key={video.id}
+                initial={{ opacity: 0, y: reducedMotion ? 0 : 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: reducedMotion ? 0 : 0.4, delay: reducedMotion ? 0 : i * 0.08 }}
+                className="aspect-video overflow-hidden bg-dark-surface border border-white/10"
+              >
+                <iframe
+                  src={`https://www.youtube.com/embed/${video.id}?rel=0&modestbranding=1`}
+                  title={video.label}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                  loading="lazy"
+                />
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* Instagram CTA */}
         <motion.div
