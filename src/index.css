@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+@theme {
+  --font-display: "Teko", sans-serif;
+  --font-body: "Rajdhani", sans-serif;
+  --color-neon-violet: #ff003c;
+  --color-neon-cyan: #ff0000;
+  --color-dark-bg: #050505;
+  --color-dark-surface: #111111;
+}
+
+/* ── Base ─────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+body {
+  background-color: var(--color-dark-bg);
+  color: #ffffff;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent text size adjustment on iOS orientation change */
+  -webkit-text-size-adjust: 100%;
+  /* Better scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+}
+
+/* Minimum touch target sizes (WCAG 2.5.5) */
+button, a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Remove default tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
+}
+
+/* ── Glitch Effect ────────────────────────────── */
+.glitch-wrapper {
+  position: relative;
+}
+
+.glitch {
+  position: relative;
+  color: white;
+  font-weight: 700;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--color-neon-violet);
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 var(--color-neon-cyan);
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glitch::before,
+  .glitch::after {
+    animation: none;
+    display: none;
+  }
+}
+
+@keyframes glitch-anim {
+  0%   { clip: rect(13px, 9999px, 98px, 0); }
+  5%   { clip: rect(42px, 9999px, 21px, 0); }
+  10%  { clip: rect(78px, 9999px, 89px, 0); }
+  15%  { clip: rect(12px, 9999px, 55px, 0); }
+  20%  { clip: rect(65px, 9999px, 34px, 0); }
+  25%  { clip: rect(89px, 9999px, 12px, 0); }
+  30%  { clip: rect(23px, 9999px, 76px, 0); }
+  35%  { clip: rect(54px, 9999px, 43px, 0); }
+  40%  { clip: rect(98px, 9999px, 65px, 0); }
+  45%  { clip: rect(34px, 9999px, 87px, 0); }
+  50%  { clip: rect(76px, 9999px, 23px, 0); }
+  55%  { clip: rect(12px, 9999px, 98px, 0); }
+  60%  { clip: rect(45px, 9999px, 54px, 0); }
+  65%  { clip: rect(87px, 9999px, 12px, 0); }
+  70%  { clip: rect(23px, 9999px, 76px, 0); }
+  75%  { clip: rect(65px, 9999px, 34px, 0); }
+  80%  { clip: rect(98px, 9999px, 89px, 0); }
+  85%  { clip: rect(34px, 9999px, 45px, 0); }
+  90%  { clip: rect(76px, 9999px, 23px, 0); }
+  95%  { clip: rect(12px, 9999px, 65px, 0); }
+  100% { clip: rect(54px, 9999px, 98px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0%   { clip: rect(65px, 9999px, 12px, 0); }
+  5%   { clip: rect(23px, 9999px, 87px, 0); }
+  10%  { clip: rect(89px, 9999px, 34px, 0); }
+  15%  { clip: rect(45px, 9999px, 76px, 0); }
+  20%  { clip: rect(12px, 9999px, 98px, 0); }
+  25%  { clip: rect(76px, 9999px, 23px, 0); }
+  30%  { clip: rect(34px, 9999px, 65px, 0); }
+  35%  { clip: rect(98px, 9999px, 12px, 0); }
+  40%  { clip: rect(54px, 9999px, 89px, 0); }
+  45%  { clip: rect(23px, 9999px, 45px, 0); }
+  50%  { clip: rect(87px, 9999px, 76px, 0); }
+  55%  { clip: rect(12px, 9999px, 34px, 0); }
+  60%  { clip: rect(65px, 9999px, 98px, 0); }
+  65%  { clip: rect(34px, 9999px, 23px, 0); }
+  70%  { clip: rect(89px, 9999px, 65px, 0); }
+  75%  { clip: rect(45px, 9999px, 12px, 0); }
+  80%  { clip: rect(98px, 9999px, 87px, 0); }
+  85%  { clip: rect(23px, 9999px, 54px, 0); }
+  90%  { clip: rect(76px, 9999px, 98px, 0); }
+  95%  { clip: rect(12px, 9999px, 34px, 0); }
+  100% { clip: rect(54px, 9999px, 76px, 0); }
+}
+
+/* ── Scanlines ────────────────────────────────── */
+.scanlines {
+  position: relative;
+}
+.scanlines::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 10;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+/* ── Marquee ──────────────────────────────────── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Pause marquee on hover or reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-\[marquee_60s_linear_infinite\] {
+    animation: none !important;
+  }
+}
+
+/* ── Neon pulse glow ──────────────────────────── */
+@keyframes neon-pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 60, 0.4); }
+  50%       { box-shadow: 0 0 30px rgba(255, 0, 60, 0.8); }
+}
+
+.neon-pulse {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+/* ── Mobile: safe area insets (iPhone notch/home indicator) ── */
+@supports (padding: max(0px)) {
+  .container {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
