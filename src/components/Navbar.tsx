@@ -42,7 +42,15 @@ export default function Navbar() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-dark-bg/95 backdrop-blur-md border-b border-white/10 py-3' : 'bg-transparent py-4 md:py-5'}`}>
       <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
-        <a href="#home" className="flex-shrink-0 touch-manipulation" onClick={() => haptic.tick()}>
+        <a
+          href="#home"
+          className="flex-shrink-0 touch-manipulation"
+          onClick={(e) => {
+            e.preventDefault();
+            haptic.tick();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        >
           <img
             src="/logo.png"
             alt="HOCHPOTENT Logo"
