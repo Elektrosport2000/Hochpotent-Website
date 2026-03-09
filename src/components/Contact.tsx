@@ -130,7 +130,7 @@ export default function Contact() {
               <motion.button
                 type="submit"
                 whileTap={reducedMotion ? {} : { scale: 0.98 }}
-                className="w-full bg-neon-violet hover:bg-white hover:text-black active:bg-white active:text-black text-white font-display text-xl md:text-2xl uppercase tracking-widest py-4 transition-colors touch-manipulation"
+                className="w-full flex items-center justify-center bg-neon-violet hover:bg-white hover:text-black active:bg-white active:text-black text-white font-display text-xl md:text-2xl uppercase tracking-widest py-4 transition-colors touch-manipulation"
               >
                 {sent ? t.contact.submitting : t.contact.submitBtn}
               </motion.button>

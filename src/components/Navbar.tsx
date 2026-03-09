@@ -75,23 +75,13 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile menu button — only on small screens */}
         <button
-          className="md:hidden text-white p-2 -mr-2 touch-manipulation"
+          className="flex md:hidden items-center justify-center text-white w-10 h-10 -mr-1 touch-manipulation"
           onClick={toggleMenu}
           aria-label="Menu"
         >
-          <AnimatePresence mode="wait" initial={false}>
-            {mobileMenuOpen ? (
-              <motion.span key="close" initial={{ rotate: reducedMotion ? 0 : -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: reducedMotion ? 0 : 90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                <X size={28} />
-              </motion.span>
-            ) : (
-              <motion.span key="menu" initial={{ rotate: reducedMotion ? 0 : 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: reducedMotion ? 0 : -90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                <Menu size={28} />
-              </motion.span>
-            )}
-          </AnimatePresence>
+          {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 
