@@ -13,7 +13,7 @@ export const translations = {
       dates:   'Dates',
       sets:    'Sets',
       media:   'Media',
-      about:   'Über',
+      about:   'Story',
       contact: 'Kontakt',
       booking: 'Booking',
     },
@@ -66,8 +66,8 @@ export const translations = {
     },
 
     ueberMich: {
-      heading:        'Über',
-      headingAccent:  'Mich',
+      heading:        'My',
+      headingAccent:  'Story',
       locationPrefix: 'aus',
       paragraphs: [
         'Lilly Becker alias HOCHPOTENT ist eine junge DJane aus Kevelaer mit einer klaren Mission: den Dancefloor mit roher Energie und kompromisslosem Sound zu dominieren.',
@@ -108,7 +108,7 @@ export const translations = {
       dates:   'Dates',
       sets:    'Sets',
       media:   'Media',
-      about:   'About',
+      about:   'Story',
       contact: 'Contact',
       booking: 'Booking',
     },
@@ -161,8 +161,8 @@ export const translations = {
     },
 
     ueberMich: {
-      heading:        'About',
-      headingAccent:  'Me',
+      heading:        'My',
+      headingAccent:  'Story',
       locationPrefix: 'from',
       paragraphs: [
         'Lilly Becker aka HOCHPOTENT is a young DJ from Kevelaer with one clear mission: to dominate the dancefloor with raw energy and uncompromising sound.',
