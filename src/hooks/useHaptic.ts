@@ -1,14 +1,14 @@
-// Haptic feedback via Web Vibration API (Android Chrome)
-// iOS does not support navigator.vibrate – graceful fallback
+// Haptic feedback via web-haptics (AudioContext + Vibration API)
+// Works on Android, iOS Safari, iOS PWA
+import { useWebHaptics } from 'web-haptics/react';
+
 export function useHaptic() {
-  const vibe = (pattern: number | number[]) => {
-    try { navigator.vibrate?.(pattern); } catch { /* unsupported */ }
-  };
+  const { trigger } = useWebHaptics();
   return {
-    light:   () => vibe(10),
-    medium:  () => vibe(25),
-    heavy:   () => vibe([30, 20, 30]),
-    success: () => vibe([10, 30, 10]),
-    tick:    () => vibe(8),
+    light:   () => trigger('light'),
+    medium:  () => trigger('medium'),
+    heavy:   () => trigger('heavy'),
+    success: () => trigger('success'),
+    tick:    () => trigger('selection'),
   };
 }

@@ -10,6 +10,7 @@ import { useSound } from '../hooks/useSound';
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const hasBackground = isScrolled || mobileMenuOpen;
   const { lang, toggle } = useLang();
   const t = useT();
   const haptic = useHaptic();
@@ -40,7 +41,7 @@ export default function Navbar() {
   const closeMenu = () => setMobileMenuOpen(false);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-dark-bg/95 backdrop-blur-md border-b border-white/10 py-3' : 'bg-transparent py-4 md:py-5'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,backdrop-filter,border-color,padding] duration-300 ${hasBackground ? 'bg-dark-bg/95 backdrop-blur-md border-b border-white/10 py-3' : 'bg-dark-bg/0 border-b border-transparent py-4 md:py-5'}`}>
       <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
         <a
           href="#home"
@@ -54,7 +55,7 @@ export default function Navbar() {
           <img
             src="/logo.png"
             alt="HOCHPOTENT Logo"
-            className="h-[32px] md:h-[44px] object-contain"
+            className="h-[44px] md:h-[60px] object-contain"
             onError={(e) => {
               e.currentTarget.style.display = 'none';
               (e.currentTarget.nextElementSibling as HTMLElement)?.classList.remove('hidden');
@@ -101,7 +102,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: reducedMotion ? 0 : 0.25, ease: 'easeInOut' }}
-            className="md:hidden overflow-hidden bg-dark-surface border-b border-white/10 shadow-2xl"
+            className="md:hidden overflow-hidden bg-dark-bg/95 backdrop-blur-md border-b border-white/10"
           >
             <div className="px-6 pt-4 pb-6 flex flex-col gap-1">
               {navLinks.map((link, i) => (

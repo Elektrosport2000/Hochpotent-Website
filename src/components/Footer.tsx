@@ -16,16 +16,23 @@ export default function Footer() {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 text-center md:text-left">
             <div>
-              <img
-                src="/logo.png"
-                alt="HOCHPOTENT Logo"
-                className="h-12 object-contain mb-4 mx-auto md:mx-0"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                  (e.currentTarget.nextElementSibling as HTMLElement)?.classList.remove('hidden');
-                }}
-              />
-              <span className="hidden font-display text-4xl font-bold tracking-wider text-white mb-2 block">HOCHPOTENT</span>
+              <a
+                href="#"
+                onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                className="inline-block touch-manipulation"
+                aria-label="Zum Seitenanfang"
+              >
+                <img
+                  src="/logo.png"
+                  alt="HOCHPOTENT Logo"
+                  className="h-16 object-contain mb-4 mx-auto md:mx-0"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    (e.currentTarget.nextElementSibling as HTMLElement)?.classList.remove('hidden');
+                  }}
+                />
+                <span className="hidden font-display text-4xl font-bold tracking-wider text-white mb-2 block">HOCHPOTENT</span>
+              </a>
               <p className="font-body text-gray-500 uppercase tracking-widest text-sm">{t.footer.tagline}</p>
             </div>
 

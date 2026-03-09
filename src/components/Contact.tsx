@@ -6,7 +6,7 @@ import { buttons } from '../data/buttons';
 import { useHaptic } from '../hooks/useHaptic';
 import { useSound } from '../hooks/useSound';
 
-const EMAIL = 'business@hochpotent.com';
+const EMAIL = 'info@hochpotent.com';
 
 export default function Contact() {
   const t = useT();
