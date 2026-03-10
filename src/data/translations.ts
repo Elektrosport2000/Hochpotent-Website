@@ -72,7 +72,7 @@ export const translations = {
       paragraphs: [
         'Ich bin HOCHPOTENT, eine DJane aus Kevelaer. Meine Mission: den Dancefloor mit roher Energie und einem Sound übernehmen, der keine Kompromisse kennt.',
         'Schranz und Hardtechno stecken einfach in mir drin. Aufgeben? Kommt nicht in Frage. Was andere aufhält, treibt mich erst richtig an.',
-        'Angefangen in einem kleinen Ort am Niederrhein, hab ich mich auf Bühnen von Hamburg bis Köln gespielt. HOCHPOTENT ist kein Alias, das ist wer ich bin.',
+        'Angefangen in einem kleinen Ort am Niederrhein, hab ich mich auf Bühnen von Hamburg bis Köln gespielt. HOCHPOTENT pure Chaos. Just Backflips.',
       ],
       presskitHeading: 'Presskit',
       presskitSub:     'Tech Rider · Pressefotos · EPK - nur auf Anfrage',
@@ -167,7 +167,7 @@ export const translations = {
       paragraphs: [
         'I\'m HOCHPOTENT, a DJ from Kevelaer. My mission: take over the dancefloor with raw energy and a sound that doesn\'t do half measures.',
         'Schranz and Hardtechno are just part of who I am. Quitting? Not an option. Whatever gets in the way just makes me push harder.',
-        'Started in a small town on the Lower Rhine, now playing stages from Hamburg to Cologne. HOCHPOTENT isn\'t just an alias, it\'s who I am.',
+        'Started in a small town on the Lower Rhine, now playing stages from Hamburg to Cologne. HOCHPOTENT pure Chaos. Just Backflips.',
       ],
       presskitHeading: 'Press Kit',
       presskitSub:     'Tech Rider · Press Photos · EPK, available on request',
