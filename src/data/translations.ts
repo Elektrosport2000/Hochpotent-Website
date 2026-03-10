@@ -66,8 +66,8 @@ export const translations = {
     },
 
     ueberMich: {
-      heading:        'My',
-      headingAccent:  'Story',
+      heading:        'Wer ich',
+      headingAccent:  'bin?',
       locationPrefix: 'aus',
       paragraphs: [
         'Ich bin HOCHPOTENT – eine DJane aus Kevelaer mit einer klaren Mission: den Dancefloor mit roher Energie und kompromisslosem Sound zu dominieren.',
@@ -161,8 +161,8 @@ export const translations = {
     },
 
     ueberMich: {
-      heading:        'My',
-      headingAccent:  'Story',
+      heading:        'Who I',
+      headingAccent:  'Am?',
       locationPrefix: 'from',
       paragraphs: [
         'I\'m HOCHPOTENT – a DJ from Kevelaer with one clear mission: to dominate the dancefloor with raw energy and uncompromising sound.',
