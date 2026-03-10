@@ -28,8 +28,8 @@ export const translations = {
     about: {
       heading:       'Raw',
       headingAccent: 'Power',
-      p1: 'Kompromissloser Sound, der keine Gefangenen macht. HOCHPOTENT steht für treibenden Schranz und düsteren Hardtechno. Rohe Energie trifft auf präzise Rhythmik – gebaut für die dunkelsten Dancefloors und die intensivsten Nächte.',
-      p2: 'Mit einer unverkennbaren Handschrift, die tief in der industriellen Rave-Kultur verwurzelt ist, bringt HOCHPOTENT eine unvergleichliche Intensität in jedes Set. Jeder Track ist eine Maschine, jeder Drop ein Statement. No Excuses.',
+      p1: 'Sound, der unter die Haut geht und dort bleibt. HOCHPOTENT steht für treibenden Schranz und düsteren Hardtechno. Rohe Energie, die auf präzise Rhythmik trifft, gemacht für die dunkelsten Dancefloors und die härtesten Nächte.',
+      p2: 'Tief verwurzelt in der industriellen Rave-Kultur bringt HOCHPOTENT eine Intensität ins Set, die man spürt bevor man sie hört. Jeder Track ein Hammer, jeder Drop ein Statement. No Excuses.',
       sound:  { label: 'Sound',  value: 'Schranz, Hardtechno, Industrial' },
       energy: { label: 'Energie', value: 'Fast, driving, relentless, intense' },
       focus:  { label: 'Fokus',  value: 'Crowd control, peak-time pressure' },
@@ -70,9 +70,9 @@ export const translations = {
       headingAccent:  'bin?',
       locationPrefix: 'aus',
       paragraphs: [
-        'Ich bin HOCHPOTENT – eine DJane aus Kevelaer mit einer klaren Mission: den Dancefloor mit roher Energie und kompromisslosem Sound zu dominieren.',
-        'Schranz und Hardtechno sind tief in mir verwurzelt. Ich stehe für Ambition, Power und die Weigerung aufzugeben – egal was kommt. Was andere als Hindernis sehen, ist für mich Antrieb.',
-        'Was in einem kleinen Ort am Niederrhein begann, hat mich auf Bühnen von Hamburg bis Köln gebracht. HOCHPOTENT ist kein Alias – es ist ein Statement.',
+        'Ich bin HOCHPOTENT, eine DJane aus Kevelaer. Meine Mission: den Dancefloor mit roher Energie und einem Sound übernehmen, der keine Kompromisse kennt.',
+        'Schranz und Hardtechno stecken einfach in mir drin. Aufgeben? Kommt nicht in Frage. Was andere aufhält, treibt mich erst richtig an.',
+        'Angefangen in einem kleinen Ort am Niederrhein, hab ich mich auf Bühnen von Hamburg bis Köln gespielt. HOCHPOTENT ist kein Alias, das ist wer ich bin.',
       ],
       presskitHeading: 'Presskit',
       presskitSub:     'Tech Rider · Pressefotos · EPK - nur auf Anfrage',
@@ -123,8 +123,8 @@ export const translations = {
     about: {
       heading:       'Raw',
       headingAccent: 'Power',
-      p1: 'Uncompromising sound that takes no prisoners. HOCHPOTENT stands for driving Schranz and dark Hardtechno. Raw energy meets precise rhythm – built for the darkest dancefloors and the most intense nights.',
-      p2: 'With a distinctive signature deeply rooted in industrial rave culture, HOCHPOTENT brings unmatched intensity to every set. Every track is a machine, every drop a statement. No Excuses.',
+      p1: 'Sound that hits and doesn\'t let go. HOCHPOTENT stands for driving Schranz and dark Hardtechno. Raw energy meets precision, built for the darkest dancefloors and the longest nights.',
+      p2: 'Rooted deep in industrial rave culture, HOCHPOTENT brings an intensity to every set that you feel before you hear it. Every track a machine, every drop a statement. No Excuses.',
       sound:  { label: 'Sound',  value: 'Schranz, Hardtechno, Industrial' },
       energy: { label: 'Energy', value: 'Fast, driving, relentless, intense' },
       focus:  { label: 'Focus',  value: 'Crowd control, peak-time pressure' },
@@ -132,7 +132,7 @@ export const translations = {
 
     venues: {
       heading: 'Played At',
-      note:    'Selection – full list available on request.',
+      note:    'Just a selection - full list on request.',
     },
 
     sets: {
@@ -165,12 +165,12 @@ export const translations = {
       headingAccent:  'Am?',
       locationPrefix: 'from',
       paragraphs: [
-        'I\'m HOCHPOTENT – a DJ from Kevelaer with one clear mission: to dominate the dancefloor with raw energy and uncompromising sound.',
-        'My passion for Schranz and Hardtechno runs deep. I stand for ambition, power and the refusal to give up – no matter what. What others see as an obstacle is fuel for me.',
-        'What started in a small town on the Lower Rhine has taken me to stages from Hamburg to Cologne. HOCHPOTENT is not just an alias – it\'s a statement.',
+        'I\'m HOCHPOTENT, a DJ from Kevelaer. My mission: take over the dancefloor with raw energy and a sound that doesn\'t do half measures.',
+        'Schranz and Hardtechno are just part of who I am. Quitting? Not an option. Whatever gets in the way just makes me push harder.',
+        'Started in a small town on the Lower Rhine, now playing stages from Hamburg to Cologne. HOCHPOTENT isn\'t just an alias, it\'s who I am.',
       ],
       presskitHeading: 'Press Kit',
-      presskitSub:     'Tech Rider · Press Photos · EPK – available on request',
+      presskitSub:     'Tech Rider · Press Photos · EPK, available on request',
       presskitBtn:     'Request Press Kit',
     },
 

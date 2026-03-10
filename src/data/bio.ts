@@ -12,9 +12,9 @@ export const bio = {
   tagline: "Straight from the Underground",
   genres: ["Schranz", "Hardtechno", "Industrial"],
   paragraphs: [
-    "Ich bin HOCHPOTENT – eine DJane aus Kevelaer mit einer klaren Mission: den Dancefloor mit roher Energie und kompromisslosem Sound zu dominieren.",
-    "Schranz und Hardtechno sind tief in mir verwurzelt. Ich stehe für Ambition, Power und die Weigerung aufzugeben – egal was kommt. Was andere als Hindernis sehen, ist für mich Antrieb.",
-    "Was in einem kleinen Ort am Niederrhein begann, hat mich auf Bühnen von Hamburg bis Köln gebracht. HOCHPOTENT ist kein Alias – es ist ein Statement.",
+    "Ich bin HOCHPOTENT, eine DJane aus Kevelaer. Meine Mission: den Dancefloor mit roher Energie und einem Sound übernehmen, der keine Kompromisse kennt.",
+    "Schranz und Hardtechno stecken einfach in mir drin. Aufgeben? Kommt nicht in Frage. Was andere aufhält, treibt mich erst richtig an.",
+    "Angefangen in einem kleinen Ort am Niederrhein, hab ich mich auf Bühnen von Hamburg bis Köln gespielt. HOCHPOTENT ist kein Alias, das ist wer ich bin.",
   ],
   tags: ["Peak-Time", "Schranz", "Hardtechno", "NRW", "Kevelaer♡", "Backflips"],
 };
