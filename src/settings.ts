@@ -199,8 +199,8 @@ export const media = {
 export const datesConfig = {
   /** CSV-Link für kommende Gigs (Standard-Tabellenblatt) */
   upcomingCsvUrl:
-    "https://docs.google.com/spreadsheets/d/1oE_Yy9yz-vK4sdtJ5Gk-wHC7xIdEn-9krax-PQXH8BY/gviz/tq?tqx=out:csv",
-  /** CSV-Link für vergangene Gigs (zweites Tabellenblatt, gid= = Sheet-ID) */
+    "https://docs.google.com/spreadsheets/d/1NYwqR4-EVJEQgNEGVe9bMCuLd6ZPLYc6LDKDaKu6Lk4/gviz/tq?tqx=out:csv&gid=243049432",
+  /** CSV-Link für vergangene Gigs */
   pastCsvUrl:
     "https://docs.google.com/spreadsheets/d/1oE_Yy9yz-vK4sdtJ5Gk-wHC7xIdEn-9krax-PQXH8BY/gviz/tq?tqx=out:csv&gid=243049432",
   /** Anzahl Gigs die gleichzeitig angezeigt werden (upcoming & past jeweils) */
