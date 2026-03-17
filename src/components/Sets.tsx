@@ -73,13 +73,6 @@ export default function Sets() {
               transition={{ duration: reducedMotion ? 0 : 0.5, delay: reducedMotion ? 0 : i * 0.1 }}
               className="group relative bg-dark-surface border border-white/10 hover:border-neon-violet/40 transition-colors duration-300 overflow-hidden"
             >
-              {/* Track label bar */}
-              <div className="flex items-center gap-3 px-4 pt-3 pb-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-neon-violet flex-shrink-0" />
-                <span className="font-display text-xs uppercase tracking-[0.25em] text-white/50 truncate">
-                  {track.label}
-                </span>
-              </div>
               <iframe
                 width="100%"
                 height="120"
@@ -121,13 +114,6 @@ export default function Sets() {
                   transition={{ duration: reducedMotion ? 0 : 0.5, delay: reducedMotion ? 0 : i * 0.1 }}
                   className="group relative bg-dark-surface border border-white/10 hover:border-neon-violet/40 transition-colors duration-300 overflow-hidden"
                 >
-                  {/* Video label bar */}
-                  <div className="flex items-center gap-3 px-4 py-2 border-b border-white/8">
-                    <div className="w-1.5 h-1.5 rounded-full bg-neon-violet flex-shrink-0" />
-                    <span className="font-display text-xs uppercase tracking-[0.25em] text-white/50 truncate">
-                      {video.label}
-                    </span>
-                  </div>
                   <div className="aspect-video">
                     <iframe
                       width="100%"
