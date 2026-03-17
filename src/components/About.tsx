@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'motion/react';
 import { useT } from '../hooks/useT';
+import { aboutSection } from '../settings';
 
 export default function About() {
   const t = useT();
@@ -58,11 +59,11 @@ export default function About() {
           >
             <div className="aspect-[4/5] relative overflow-hidden border border-white/10 group col-span-2 sm:col-span-1">
               <div className="absolute inset-0 bg-neon-violet/20 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-500" />
-              <img src="/images/about-1.jpg" alt="HOCHPOTENT Live 1" className="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+              <img src={aboutSection.imageLeft} alt="HOCHPOTENT Live 1" className="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-700" loading="lazy" />
             </div>
             <div className="aspect-[4/5] relative overflow-hidden border border-white/10 group hidden sm:block sm:mt-12">
               <div className="absolute inset-0 bg-neon-cyan/20 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-500" />
-              <img src="/images/about-2.jpg" alt="HOCHPOTENT Live 2" className="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+              <img src={aboutSection.imageRight} alt="HOCHPOTENT Live 2" className="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-700" loading="lazy" />
             </div>
             <div className="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-neon-cyan opacity-50 hidden sm:block" />
             <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b-2 border-l-2 border-neon-violet opacity-50" />

@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { type Gig, dates as staticDates, DATES_CSV_URL } from '../data/dates';
+import { type Gig, dates as staticDates, pastDates as staticPastDates, DATES_CSV_URL, PAST_DATES_CSV_URL } from '../data/dates';
+import { datesConfig } from '../settings';
 
 function parseCSV(text: string): Gig[] {
   const lines = text.trim().split('\n');
   if (lines.length < 2) return [];
-  // Skip header row
   return lines.slice(1).map(line => {
-    // Handle quoted fields with commas
     const cols: string[] = [];
     let current = '';
     let inQuotes = false;
@@ -30,32 +29,53 @@ function parseCSV(text: string): Gig[] {
       name:     name    || '',
       venue:    venue   || '',
       artists:  artists || '',
-      img:      img     || '/images/club-docks.jpg',
+      img:      img     || datesConfig.fallbackImage,
       link:     link    || '#',
       sold_out: sold_out?.toLowerCase() === 'true' || sold_out === '1',
     } satisfies Gig;
   }).filter(g => g.date && g.name);
 }
 
-export function useGigDates(): { gigs: Gig[]; loading: boolean } {
-  const [gigs, setGigs] = useState<Gig[]>(staticDates);
-  const [loading, setLoading] = useState(false);
+async function fetchGigs(url: string): Promise<Gig[]> {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error('fetch failed');
+  const text = await r.text();
+  return parseCSV(text);
+}
+
+export function useGigDates(): {
+  upcomingGigs: Gig[];
+  pastGigs: Gig[];
+  loading: boolean;
+} {
+  const [upcomingGigs, setUpcomingGigs] = useState<Gig[]>(staticDates);
+  const [pastGigs, setPastGigs]         = useState<Gig[]>(staticPastDates);
+  const [loading, setLoading]           = useState(false);
 
   useEffect(() => {
-    if (!DATES_CSV_URL) return;
+    if (!DATES_CSV_URL && !PAST_DATES_CSV_URL) return;
     setLoading(true);
-    fetch(DATES_CSV_URL)
-      .then(r => {
-        if (!r.ok) throw new Error('fetch failed');
-        return r.text();
-      })
-      .then(text => {
-        const parsed = parseCSV(text);
-        if (parsed.length > 0) setGigs(parsed);
-      })
-      .catch(() => { /* use static fallback */ })
-      .finally(() => setLoading(false));
+
+    const fetches: Promise<void>[] = [];
+
+    if (DATES_CSV_URL) {
+      fetches.push(
+        fetchGigs(DATES_CSV_URL)
+          .then(parsed => { if (parsed.length > 0) setUpcomingGigs(parsed); })
+          .catch(() => { /* use static fallback */ })
+      );
+    }
+
+    if (PAST_DATES_CSV_URL) {
+      fetches.push(
+        fetchGigs(PAST_DATES_CSV_URL)
+          .then(parsed => { if (parsed.length > 0) setPastGigs(parsed); })
+          .catch(() => { /* use static fallback */ })
+      );
+    }
+
+    Promise.allSettled(fetches).finally(() => setLoading(false));
   }, []);
 
-  return { gigs, loading };
+  return { upcomingGigs, pastGigs, loading };
 }

@@ -1,61 +1,33 @@
-// ─────────────────────────────────────────────────────────────────
-//  BUTTONS – Text und Link aller CTAs zentral pflegen
-//
-//  Hier kannst du den Text und den Link jedes Buttons ändern.
-//  Die Änderungen wirken sich automatisch auf die gesamte Website aus.
-// ─────────────────────────────────────────────────────────────────
+// Einstellungen → src/settings.ts (Abschnitte 3, 4, 7, 2)
+import { artist, social, hero, nav, sets, ueberMich } from '../settings';
 
 export const buttons = {
-
   // Hero-Bereich
-  heroBooking: {
-    text: "Booking anfragen",
-    href: "#contact",
-  },
-  heroListen: {
-    text: "Jetzt hören",
-    href: "#sets",
-  },
+  heroBooking: { text: "Booking anfragen",    href: hero.bookingBtn.href },
+  heroListen:  { text: "Jetzt hören",          href: hero.listenBtn.href },
 
   // Navigation (oben rechts)
-  navBooking: {
-    text: "Booking",
-    href: "#contact",
-  },
+  navBooking:  { text: "Booking",              href: nav.bookingBtn.href },
 
   // Sets-Bereich
-  soundcloud: {
-    text: "Mehr auf SoundCloud",
-    href: "https://soundcloud.com/hochpotent",
-  },
+  soundcloud:  { text: "Mehr auf SoundCloud",  href: sets.soundcloudProfileUrl },
 
   // Media-Bereich
-  instagram: {
-    text: "Auf Instagram folgen",
-    href: "https://www.instagram.com/hochpotent/",
-  },
-  instagramHandle: {
-    text: "@hochpotent",
-    href: "https://www.instagram.com/hochpotent/",
-  },
+  instagram:       { text: "Auf Instagram folgen", href: social.instagram },
+  instagramHandle: { text: social.instagramHandle, href: social.instagram },
 
   // Über mich - Presskit
-  presskit: {
-    text: "Presskit anfragen",
-    href: "mailto:info@hochpotent.com?subject=Presskit%20Anfrage&body=Hallo%2C%0A%0Aich%20m%C3%B6chte%20das%20Presskit%20von%20HOCHPOTENT%20anfordern.%0A%0AMein%20Medium%20%2F%20Organisation%3A%20",
-  },
+  presskit:    { text: "Presskit anfragen",    href: ueberMich.presskitEmail },
 
   // Kontakt-Formular (Submit-Button, kein Link)
-  contactSubmit: {
-    text: "Anfrage senden",
-  },
+  contactSubmit: { text: "Anfrage senden" },
 
   // Dates-Bereich
-  datesDetails: {
-    text: "Details",
-  },
-  datesBooking: {
-    text: "Booking anfragen",
-    href: "#contact",
-  },
+  datesDetails: { text: "Details" },
+  datesBooking: { text: "Booking anfragen",    href: "#contact" },
+
+  // Kontakt-Infos
+  contactEmail:     { text: artist.email,           href: `mailto:${artist.email}` },
+  contactInstagram: { text: social.instagramHandle, href: social.instagram },
+  contactSoundcloud:{ text: "soundcloud.com/hochpotent", href: social.soundcloud },
 };

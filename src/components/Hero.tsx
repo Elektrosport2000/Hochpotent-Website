@@ -82,7 +82,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: reducedMotion ? 0 : 0.5, delay: reducedMotion ? 0 : 1.0 }}
               whileTap={reducedMotion ? {} : { scale: 0.97 }}
-              className="bg-neon-violet hover:bg-white hover:text-black active:bg-white active:text-black text-white font-display text-lg sm:text-xl md:text-2xl uppercase tracking-widest px-8 md:px-10 py-4 transition-all duration-300 touch-manipulation select-none"
+              className="bg-neon-violet hover:bg-white hover:text-black active:bg-white active:text-black text-white font-display text-lg sm:text-xl md:text-2xl uppercase tracking-widest px-8 md:px-10 py-4 transition-colors duration-300 touch-manipulation select-none"
             >
               {t.hero.bookingBtn}
             </motion.a>
@@ -93,7 +93,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: reducedMotion ? 0 : 0.5, delay: reducedMotion ? 0 : 1.1 }}
               whileTap={reducedMotion ? {} : { scale: 0.97 }}
-              className="border border-white/40 hover:border-white hover:bg-white/5 active:bg-white/10 text-white font-display text-lg sm:text-xl md:text-2xl uppercase tracking-widest px-8 md:px-10 py-4 transition-all duration-300 touch-manipulation select-none"
+              className="border border-white/40 hover:border-white hover:bg-white/5 active:bg-white/10 text-white font-display text-lg sm:text-xl md:text-2xl uppercase tracking-widest px-8 md:px-10 py-4 transition-colors duration-300 touch-manipulation select-none"
             >
               {t.hero.listenBtn}
             </motion.a>

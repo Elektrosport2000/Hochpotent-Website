@@ -1,285 +1,277 @@
-# HOCHPOTENT - Official Website
+# HOCHPOTENT – Website
 
-> **Schranz & Hardtechno. High Energy. No Excuses.**
-
-Offizielle Website für DJ/Producer HOCHPOTENT (Lilly Becker) aus Kevelaer.
+**Stack:** React 19 · TypeScript · Vite 6 · Tailwind CSS v4 · Motion (Framer Motion) · Lucide React
 
 ---
 
-## Stack
-
-| Layer | Tech |
-|---|---|
-| Framework | React 19 + TypeScript |
-| Build Tool | Vite 6 |
-| Styling | Tailwind CSS v4 |
-| Animationen | Motion (Framer Motion) |
-| Icons | Lucide React |
-
----
-
-## Lokale Entwicklung
+## Schnellstart
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000
-npm run build      # Produktions-Build
-npm run preview    # Build lokal vorschauen
-npm run lint       # TypeScript-Check
+npm run dev       # Entwicklungsserver → http://localhost:3000
+npm run build     # Produktions-Build → /dist
+npm run preview   # Build lokal vorschauen
 ```
 
 ---
 
-## Was wo anpassen
+## Einstellungen – `src/settings.ts`
 
-### Buttons (Text + Links) - `src/data/buttons.ts`
+**Alle konfigurierbaren Inhalte der Website stehen in einer einzigen Datei:**
 
-**Alle CTA-Buttons der Website zentral an einem Ort.**
-Text und Link hier ändern - wirkt sich automatisch überall aus.
+```
+src/settings.ts
+```
 
-| Key | Button | Wo sichtbar |
+Die alten Einzeldateien (`buttons.ts`, `bio.ts`, `venues.ts` …) existieren noch als dünne Re-Exports aus `settings.ts` und müssen nicht angefasst werden.
+
+### Inhaltsverzeichnis der Einstellungsdatei
+
+| Abschnitt | Export | Was du damit steuerst |
 |---|---|---|
-| `heroBooking` | "Booking anfragen" | Hero, gross links |
-| `heroListen` | "Jetzt hören" | Hero, gross rechts |
-| `navBooking` | "Booking" | Navbar oben rechts |
-| `soundcloud` | "Mehr auf SoundCloud" | Sets-Sektion |
-| `instagram` | "Auf Instagram folgen" | Media-Sektion unten |
-| `instagramHandle` | "@hochpotent" | Media-Sektion oben rechts |
-| `presskit` | "Presskit anfragen" | Über - Presskit-Block |
-| `contactSubmit` | "Anfrage senden" | Kontakt-Formular |
-| `datesDetails` | "Details" | Jeder Gig-Eintrag |
-| `datesBooking` | "Booking anfragen" | Fallback wenn keine Dates |
+| 1 | `artist` | Name, E-Mail, Standort, Genres, Tagline |
+| 2 | `social` | Instagram- und SoundCloud-Links |
+| 3 | `nav` | Booking-Button-Link in der Navbar |
+| 4 | `hero` | Hintergrundbild, Booking-Button, Listen-Button |
+| 5 | `aboutSection` | Fotos für die "Raw Power"-Sektion |
+| 6 | `venues` | "Played At"-Marquee-Liste mit optionalen Links |
+| 7 | `sets` | SoundCloud-Tracks, YouTube-Videos, SoundCloud-Profil-URL |
+| 8 | `media` | Galerie-Bilder, Stats-Leiste (Gigs, Städte, Jahre, Energy) |
+| 9 | `datesConfig` | Google-Sheets-Links für Upcoming + Past Gigs |
+| 10 | `ueberMich` | Bio-Tags, Presskit-E-Mail-Link |
+| 11 | `translations` | Alle sichtbaren Texte in DE und EN |
+| 12 | `legal` | Impressum & Datenschutzerklärung (Markdown) |
+
+---
+
+### 1. Artist & Kontakt
 
 ```ts
-// Beispiel: Hero-Button Text und Ziel ändern
-heroBooking: {
-  text: "Jetzt buchen",   // Text im Button
-  href: "#contact",        // Ziel beim Klick
-},
+export const artist = {
+  alias:       "HOCHPOTENT",       // Künstlername (erscheint in Impressum, Bio)
+  displayName: "HOCHPOTENT",       // Anzeigename
+  location:    "Kevelaer, NRW",    // Standort in der Bio
+  tagline:     "Straight from the Underground",
+  genres:      ["Schranz", "Hardtechno", "Industrial"],
+  email:       "info@hochpotent.com",  // für Kontakt, Impressum, Presskit
+};
 ```
 
 ---
 
-### Dates via Google Sheets – `src/data/dates.ts`
+### 2. Social Media
 
-**Dates können über eine öffentliche Google Tabelle gepflegt werden – kein Code-Deploy nötig.**
+```ts
+export const social = {
+  instagram:       "https://www.instagram.com/hochpotent/",
+  instagramHandle: "@hochpotent",
+  soundcloud:      "https://soundcloud.com/hochpotent",
+};
+```
 
-**Setup:**
-1. Neue Google Tabelle erstellen
-2. Erste Zeile (Header): `date,month,name,venue,artists,img,link,sold_out`
-3. Ab Zeile 2 Gig-Daten eintragen (neueste zuerst)
-4. Tabelle veröffentlichen: *Datei → Freigabe → Im Web veröffentlichen → "Gesamtes Dokument" + "Comma-separated values (.csv)"* → **Link kopieren**
-5. Den kopierten Link in `src/data/dates.ts` bei `DATES_CSV_URL` eintragen
+---
 
-**Spalten:**
-| Spalte | Beispiel | Hinweis |
+### 6. Venues – Played At
+
+Das Laufband. Einfach Einträge hinzufügen oder entfernen:
+
+```ts
+export const venues = [
+  { name: "Amphoria Kevelaer",   url: "" },          // kein Link
+  { name: "Docks Hamburg",       url: "" },
+  { name: "Odonien",             url: "https://www.odonien.de" },  // mit Link
+  // weitere Venues ...
+];
+```
+
+---
+
+### 7. Sets – SoundCloud & YouTube
+
+```ts
+export const sets = {
+  soundcloudTracks: [
+    { label: "Bellen",      url: "https://soundcloud.com/hochpotent/bellen" },
+    { label: "Läuft noch",  url: "https://soundcloud.com/hochpotent/laeuft-noch" },
+    { label: "Tausendfach", url: "https://soundcloud.com/hochpotent/tausendfach" },
+    // Weiteren Track hinzufügen:
+    // { label: "Track Name", url: "https://soundcloud.com/hochpotent/track-slug" },
+  ],
+  youtubeVideos: [
+    { id: "sXdhMUOgS7A", label: "HOCHPOTENT Live Set" },
+    { id: "5SlAeV6PvJY", label: "HOCHPOTENT Set" },
+    // Weiteres Video: { id: "YOUTUBE_VIDEO_ID", label: "Live @ Club XY" }
+    // Die ID ist der Teil nach ?v= in der YouTube-URL.
+  ],
+  soundcloudProfileUrl: "https://soundcloud.com/hochpotent",
+};
+```
+
+**SoundCloud-Track-URL:** Track auf SoundCloud öffnen → URL aus der Adresszeile kopieren.
+
+---
+
+### 8. Media / Galerie
+
+```ts
+export const media = {
+  images: [
+    "/images/media-1.jpg",   // Erstes Bild = großes Featured Image
+    "/images/media-2.jpg",
+    // ... weitere Bilder einfach anhängen
+  ],
+  stats: [
+    { value: "150+", label: "Gigs" },
+    { value: "20+",  label: "Städte" },
+    { value: "5+",   label: "Jahre" },
+    { value: "∞",    label: "Energy" },
+  ],
+};
+```
+
+Bilder nach `/public/images/` kopieren, dann Pfad hier eintragen.
+
+---
+
+### 9. Dates – Google Sheets Integration
+
+Die Gig-Einträge werden **live aus Google Sheets geladen**. Kein Code-Deployment nötig.
+
+#### Google Sheet einrichten
+
+**Tabellenstruktur** (zwei Tabellenblätter: eines für Upcoming, eines für Past):
+
+| Spalte | Inhalt | Beispiel |
 |---|---|---|
-| `date` | `15` | Nur der Tag als Zahl |
-| `month` | `MAR 2026` | Monat + Jahr, Großbuchstaben |
-| `name` | `TECHNO KINGDOM` | Eventname |
-| `venue` | `DOCKS, HAMBURG` | Club, Stadt |
-| `artists` | `CARL CRAIG, LEN FAKI` | Leer lassen wenn Solo |
-| `img` | `/images/club-docks.jpg` | Pfad in public/images/ |
-| `link` | `https://tickets.xyz` | Ticket-Link |
-| `sold_out` | `false` | `true` = Sold-Out-Badge |
+| `date` | Tag als Zahl | `15` |
+| `month` | Monat + Jahr | `MAR 2026` |
+| `name` | Event-Name | `TECHNO KINGDOM` |
+| `venue` | Location | `DOCKS HAMBURG` |
+| `artists` | Weitere Acts (optional) | `CARL CRAIG + LEN FAKI` |
+| `img` | Bild-Pfad oder URL | `/images/docks.jpg` |
+| `link` | Ticket- oder Infoseite | `https://tickets.xyz` |
+| `sold_out` | true oder false | `false` |
 
-**Fallback:** Wenn `DATES_CSV_URL` leer ist oder der Fetch fehlschlägt, werden die statischen Dates aus `dates.ts` gezeigt. Es werden immer die ersten **4** Einträge angezeigt.
+**Tipp:** Neueste Dates oben eintragen. Es werden immer die ersten 4 Zeilen angezeigt.
 
----
+#### CSV-Links generieren
 
-### Gig-Dates - `src/data/dates.ts`
+1. Google Tabelle öffnen
+2. **Datei → Teilen → Im Web veröffentlichen**
+3. Format: **"Gesamtes Dokument"** + **"CSV"** → Veröffentlichen → Link kopieren
+4. Für vergangene Gigs: zweites Tabellenblatt erstellen, dann `&gid=SHEET_GID` anhängen (Sheet-ID steht in der URL beim Öffnen des Tabellenblatts als `#gid=...`)
 
-**Auftrittsdaten verwalten. Die ersten **4** Einträge werden angezeigt.**
+#### In `settings.ts` eintragen
 
 ```ts
-{
-  date: "15",                         // Tag (nur Zahl)
-  month: "MAR 2026",                  // Monat + Jahr
-  name: "EVENTNAME",                  // Name des Events
-  venue: "LOCATION, STADT",           // Club, Stadt
-  artists: "WEITERE ACTS",            // leer "" wenn Solo-Auftritt
-  img: "/images/club-xyz.jpg",        // Hintergrundbild (in public/images/)
-  link: "https://tickets.xyz",        // Ticket-Link oder Instagram-Post
-  sold_out: false,                    // true = roter "Sold Out" statt Button
-},
+export const datesConfig = {
+  upcomingCsvUrl: "https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/gviz/tq?tqx=out:csv",
+  pastCsvUrl:     "https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/gviz/tq?tqx=out:csv&gid=SHEET_GID",
+  displayCount:   4,
+  fallbackImage:  "/images/club-docks.jpg",
+};
 ```
 
-**Workflow für neue Dates:**
-1. Neuen Eintrag **oben** in die Liste einfügen
-2. Passendes Club-Foto als `club-name.jpg` in `public/images/` hochladen
-3. Alten Eintrag nach unten schieben oder löschen
+> **Aktuell konfiguriertes Sheet:**
+> `https://docs.google.com/spreadsheets/d/1oE_Yy9yz-vK4sdtJ5Gk-wHC7xIdEn-9krax-PQXH8BY`
+> Upcoming: Standard-Tabellenblatt | Past Gigs: gid=243049432
 
 ---
 
-### Bio / Über - `src/data/bio.ts`
+### 11. Texte (Übersetzungen)
 
-**Der persönliche Bereich mit Freitext, Tagline und Schlagwörtern.**
-
-```ts
-name:       "Lilly Becker",
-alias:      "HOCHPOTENT",
-location:   "Kevelaer, NRW",
-tagline:    "Straight from the Underground",  // Zeile unter dem Titel
-
-paragraphs: [
-  "Erster Absatz...",     // beliebig viele Absätze möglich
-  "Zweiter Absatz...",
-],
-
-tags: ["Peak-Time", "Schranz", "Kevelaer♡", "Backflips"],  // Schlagwort-Kästchen
-```
-
----
-
-### Venues (Played At) - `src/data/venues.ts`
-
-**Clubs im scrollenden Marquee-Band. Mit oder ohne klickbaren Link.**
+Alle sichtbaren Texte stehen unter `translations` in `settings.ts`, jeweils für `de` und `en`:
 
 ```ts
-{ name: "Bootshaus",      url: "https://www.bootshaus.tv" },  // klickbar
-{ name: "Eigener Club",   url: "" },                          // nicht klickbar
-```
-
-- Clubs **mit URL** werden beim Hover rot und sind anklickbar
-- Clubs **ohne URL** (`""`) werden beim Hover weiß, aber nicht verlinkt
-- Reihenfolge im Array = Reihenfolge im Marquee
-
----
-
-### Sets / Tracks - `src/components/Sets.tsx`
-
-**SoundCloud-Tracks und YouTube-Video einbetten.**
-
-Das `tracks`-Array ganz oben in der Datei:
-```ts
-const tracks = [
-  {
-    label: "Track-Name",   // interner Name (wird nicht angezeigt)
-    src: "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/hochpotent/TRACK-NAME&color=%23ff003c&...",
+export const translations = {
+  de: {
+    hero: {
+      subtitle:   "Schranz & Hardtechno · High Energy · No Excuses",
+      tags:       ["Schranz / Hardtechno", "Peak-Time Sets", "Industrial Pressure"],
+      bookingBtn: "Booking anfragen",
+      listenBtn:  "Jetzt hören",
+    },
+    dates: {
+      toggleUpcoming: "Upcoming",   // Tab-Button für aktuelle Gigs
+      togglePast:     "Past",       // Tab-Button für vergangene Gigs
+      // ...
+    },
+    // ... alle weiteren Sektionen
   },
-];
-```
-
-SoundCloud-URL so ermitteln:
-1. Track auf soundcloud.com öffnen
-2. "Share" klicken, dann "Embed"
-3. Die `src`-URL aus dem generierten Code kopieren
-
-Das YouTube-Video ist direkt in `Sets.tsx` eingebettet - einfach die YouTube-ID in der URL tauschen (`/embed/YOUTUBE-ID`).
-
----
-
-### Galerie & Videos - `src/components/Media.tsx`
-
-**Fotos und Videos im Array oben in der Datei verwalten.**
-
-```ts
-const images = [
-  "/images/media-1.jpg",   // erstes Bild = grosses Featured-Bild
-  "/images/media-2.jpg",   // alle weiteren im 4-spaltigen Grid
-  // weitere Bilder einfach ergänzen
-];
-
-// YouTube-Videos als Raster unterhalb der Galerie anzeigen:
-const videos = [
-  { id: 'YOUTUBE_VIDEO_ID', label: 'Live @ Club XY' },
-  // weitere Videos ergänzen – Array leer = kein Video-Bereich
-];
-```
-
-Bilder in `public/images/` hochladen, dann Pfad in `images[]` eintragen.
-Videos: YouTube-Video-ID aus der URL kopieren (z.B. `dQw4w9WgXcQ` aus `youtu.be/dQw4w9WgXcQ`).
-
----
-
-### Impressum & Datenschutz - `src/data/legal.ts`
-
-**Beide Rechtstexte vollständig befüllt.**
-
-E-Mail: info@hochpotent.com
-
-Bei Änderungen (z.B. neue eingebettete Dienste) direkt in dieser Datei anpassen. Die Texte werden als Popup im Footer angezeigt.
-
----
-
-### Navbar-Links - `src/components/Navbar.tsx`
-
-Das `navLinks`-Array steuert welche Punkte in der Navigation erscheinen:
-```ts
-const navLinks = [
-  { name: 'Home',       href: '#home' },
-  { name: 'Dates',      href: '#dates' },
-  // weitere Punkte hier ergänzen oder entfernen
-];
+  en: { /* gleiche Struktur auf Englisch */ },
+};
 ```
 
 ---
 
-## Bilder
+### 12. Impressum & Datenschutz
 
-Detaillierte Übersicht: [`public/images/README.md`](public/images/README.md)
+Die Rechtstexte stehen als Markdown-Template am Ende von `settings.ts` unter `legal.impressum` und `legal.datenschutz`.
 
-| Datei | Größe | Max. | Hinweis |
-|---|---|---|---|
-| `logo.png` | min. 1600 px breit | 300 KB | PNG mit Transparenz |
-| `hero-bg.jpg` | 1920 x 1080 px | 400 KB | farbig, nicht Graustufen |
-| `media-1.jpg` | 1920 x 840 px | 300 KB | Featured (gross) |
-| `media-2` bis `9.jpg` | 800 x 800 px | 150 KB | Galerie-Grid |
-| `club-*.jpg` | 1200 x 600 px | 200 KB | Hintergrund je Date |
-| `about-1/2.jpg` | 800 x 1000 px | 200 KB | Artist-Fotos |
-| `contact-bg.jpg` | 1200 x 1600 px | 300 KB | Kontakt-Hintergrund |
-
-JPG-Qualität beim Export: **80-85 %**
+> **Wichtig:** Angaben sorgfältig prüfen. Das Impressum ist gesetzlich Pflicht (§ 5 TMG).
 
 ---
 
-## Downloads (Presskit)
-
-Dateien in `public/files/` ablegen: [`public/files/README.md`](public/files/README.md)
-Nicht öffentlich verlinkt - nur auf E-Mail-Anfrage.
-
----
-
-## Projektstruktur
+## Dateistruktur
 
 ```
-hochpotent/
-├── public/
-│   ├── logo.png
-│   ├── images/              # Bilder - README.md beachten
-│   └── files/               # Presskit-Downloads - README.md beachten
-├── src/
-│   ├── components/
-│   │   ├── Navbar.tsx       # Navigation + Booking-Button
-│   │   ├── Hero.tsx         # Logo, Hero-Bild, CTAs
-│   │   ├── About.tsx        # Raw Power - Artist-Fotos + Text
-│   │   ├── Venues.tsx       # Played At Marquee
-│   │   ├── Sets.tsx         # SoundCloud + YouTube Embeds
-│   │   ├── Dates.tsx        # Upcoming Gigs
-│   │   ├── Media.tsx        # Foto-Galerie + Instagram CTA
-│   │   ├── UeberMich.tsx    # Bio + Presskit-Anfrage
-│   │   ├── Contact.tsx      # Booking-Formular (Honeypot-Spamschutz)
-│   │   ├── Footer.tsx       # Social Links + Impressum/Datenschutz
-│   │   └── LegalModal.tsx   # Popup fuer Rechtstexte
-│   ├── data/
-│   │   ├── buttons.ts       # Alle Buttons: Text + Links
-│   │   ├── dates.ts         # Gig-Daten
-│   │   ├── bio.ts           # Uber mich: Text, Tagline, Tags
-│   │   ├── venues.ts        # Played At Liste mit Links
-│   │   └── legal.ts         # Impressum + Datenschutzerklaerung
-│   ├── index.css            # Tailwind + Animationen (marquee, glitch)
-│   └── main.tsx
-└── index.html
+src/
+├── settings.ts          ← MASTER SETTINGS – hier alles einstellen
+├── components/
+│   ├── Hero.tsx         ← Startseite / Landing
+│   ├── Navbar.tsx       ← Fixe Navigation oben
+│   ├── About.tsx        ← "Raw Power"-Sektion
+│   ├── Venues.tsx       ← "Played At"-Marquee
+│   ├── Sets.tsx         ← SoundCloud + YouTube
+│   ├── Dates.tsx        ← Upcoming/Past Gigs mit Toggle
+│   ├── Media.tsx        ← Galerie + Lightbox
+│   ├── UeberMich.tsx    ← Bio-Sektion
+│   ├── Contact.tsx      ← Booking-Formular
+│   ├── Footer.tsx       ← Footer mit Links
+│   └── LegalModal.tsx   ← Impressum/Datenschutz Modal
+├── data/
+│   ├── buttons.ts       ← Re-Export aus settings.ts
+│   ├── translations.ts  ← Re-Export aus settings.ts
+│   ├── bio.ts           ← Re-Export aus settings.ts
+│   ├── venues.ts        ← Re-Export aus settings.ts
+│   ├── legal.ts         ← Re-Export aus settings.ts
+│   └── dates.ts         ← Re-Export aus settings.ts + Typen
+├── hooks/
+│   ├── useGigDates.ts   ← Google Sheets CSV fetcher (upcoming + past)
+│   ├── useT.ts          ← Übersetzungs-Hook
+│   ├── useHaptic.ts     ← Vibrations-Feedback
+│   └── useSound.ts      ← Web Audio UI-Sounds
+├── context/
+│   └── LanguageContext.tsx  ← DE/EN Toggle
+└── index.css            ← Tailwind + Custom Animations
+public/
+├── images/              ← Alle Bilder hier ablegen
+├── files/               ← Presskit etc. (private)
+└── logo.png
 ```
 
 ---
 
-## Kontakt
+## Bilder hinzufügen
 
-E-Mail: info@hochpotent.com
+1. Bild nach `/public/images/` kopieren
+2. In `settings.ts` eintragen:
+   - **Galerie:** `media.images` Array ergänzen
+   - **About-Fotos:** `aboutSection.imageLeft` / `aboutSection.imageRight`
+   - **Hero-Hintergrund:** `hero.backgroundImage`
+   - **Gig-Bilder:** Direkt im Google Sheet in der `img`-Spalte
 
 ---
 
-## Lizenz
+## GitHub-Repository
 
-Privates Projekt. Alle Rechte vorbehalten - HOCHPOTENT 2025.
+```
+https://github.com/Elektrosport2000/Hochpotent-Website
+```
+
+Push auf `main`:
+```bash
+git add .
+git commit -m "Update settings"
+git push origin master:main
+```
