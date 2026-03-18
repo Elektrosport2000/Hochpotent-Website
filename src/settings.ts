@@ -310,9 +310,6 @@ export const translations = {
       instagramCta:  "Mehr auf Instagram",
       instagramSub:  "Backstage, Sets, Behind the Scenes",
       instagramBtn:  "Auf Instagram folgen",
-      videosHeading: "Videos",
-      muteBtn:       "Ton aus",
-      unmuteBtn:     "Ton an",
     },
 
     ueberMich: {
@@ -412,9 +409,6 @@ export const translations = {
       instagramCta:  "More on Instagram",
       instagramSub:  "Backstage, Sets, Behind the Scenes",
       instagramBtn:  "Follow on Instagram",
-      videosHeading: "Videos",
-      muteBtn:       "Mute",
-      unmuteBtn:     "Unmute",
     },
 
     ueberMich: {

@@ -1,6 +1,6 @@
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-import { X, ChevronLeft, ChevronRight, ZoomIn, Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, ZoomIn, Play, Pause } from 'lucide-react';
 import { useT } from '../hooks/useT';
 import { buttons } from '../data/buttons';
 import { useHaptic } from '../hooks/useHaptic';
@@ -10,6 +10,18 @@ import { media as mediaCfg } from '../settings';
 const images = mediaCfg.images;
 const stats  = mediaCfg.stats;
 const videos = mediaCfg.videos ?? [];
+const isMuted = mediaCfg.videosMutedByDefault ?? true;
+
+// Unified gallery item: image or video
+type GalleryItem =
+  | { kind: 'image'; src: string; index: number }
+  | { kind: 'video'; src: string; poster: string; videoIndex: number };
+
+const [featuredSrc, ...restImages] = images;
+const gridItems: GalleryItem[] = [
+  ...restImages.map((src, i) => ({ kind: 'image' as const, src, index: i + 1 })),
+  ...videos.map((v, i) => ({ kind: 'video' as const, src: v.src, poster: v.poster, videoIndex: i })),
+];
 
 export default function Media() {
   const t = useT();
@@ -17,52 +29,30 @@ export default function Media() {
   const sound = useSound();
   const reducedMotion = useReducedMotion();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [featured, ...rest] = images;
-
-  // Video state
-  const [isMuted, setIsMuted] = useState(mediaCfg.videosMutedByDefault ?? true);
   const [playingIndex, setPlayingIndex] = useState<number | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
-  const toggleMute = useCallback(() => {
-    haptic.light();
-    sound.click();
-    setIsMuted(prev => {
-      const next = !prev;
-      videoRefs.current.forEach(v => { if (v) v.muted = next; });
-      return next;
-    });
-  }, [haptic, sound]);
-
-  const playVideo = useCallback((index: number) => {
-    const vid = videoRefs.current[index];
+  const playVideo = useCallback((i: number) => {
+    const vid = videoRefs.current[i];
     if (!vid) return;
-    videoRefs.current.forEach((v, i) => {
-      if (v && i !== index && !v.paused) v.pause();
-    });
+    videoRefs.current.forEach((v, j) => { if (v && j !== i && !v.paused) v.pause(); });
     vid.play();
-    setPlayingIndex(index);
+    setPlayingIndex(i);
   }, []);
 
-  const pauseVideo = useCallback((index: number) => {
-    const vid = videoRefs.current[index];
+  const pauseVideo = useCallback((i: number) => {
+    const vid = videoRefs.current[i];
     if (!vid) return;
     vid.pause();
     setPlayingIndex(null);
   }, []);
 
-  const togglePlay = useCallback((index: number) => {
+  const togglePlay = useCallback((i: number) => {
     haptic.light();
-    const vid = videoRefs.current[index];
+    const vid = videoRefs.current[i];
     if (!vid) return;
-    if (vid.paused) playVideo(index);
-    else pauseVideo(index);
+    if (vid.paused) playVideo(i); else pauseVideo(i);
   }, [haptic, playVideo, pauseVideo]);
-
-  // Sync muted state when videos mount
-  useEffect(() => {
-    videoRefs.current.forEach(v => { if (v) v.muted = isMuted; });
-  }, [isMuted]);
 
   const openLightbox = useCallback((index: number) => {
     haptic.light();
@@ -141,16 +131,16 @@ export default function Media() {
             <ZoomIn size={18} className="text-white" />
           </div>
           <img
-            src={featured}
+            src={featuredSrc}
             alt="HOCHPOTENT Live"
             className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 group-active:grayscale-0 group-hover:scale-105 transition-all duration-700"
             loading="lazy"
           />
         </motion.div>
 
-        {/* Gallery grid */}
+        {/* Gallery grid – images + videos mixed */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-4 mb-8 md:mb-12">
-          {rest.map((src, i) => (
+          {gridItems.map((item, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: reducedMotion ? 0 : 20 }}
@@ -158,101 +148,56 @@ export default function Media() {
               viewport={{ once: true, margin: '-30px' }}
               transition={{ duration: reducedMotion ? 0 : 0.4, delay: reducedMotion ? 0 : (i % 4) * 0.06 }}
               className="aspect-square overflow-hidden bg-dark-surface group relative cursor-pointer"
-              onClick={() => openLightbox(i + 1)}
+              {...(item.kind === 'image'
+                ? { onClick: () => openLightbox(item.index) }
+                : {
+                    onMouseEnter: () => playVideo(item.videoIndex),
+                    onMouseLeave: () => pauseVideo(item.videoIndex),
+                    onClick: () => togglePlay(item.videoIndex),
+                  }
+              )}
             >
               <div className="absolute inset-0 bg-neon-violet/20 mix-blend-overlay opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 z-10" />
-              <div className="absolute top-2 right-2 z-20 bg-black/60 p-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <ZoomIn size={14} className="text-white" />
-              </div>
-              <img
-                src={src}
-                alt={`HOCHPOTENT Live ${i + 2}`}
-                className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 group-active:grayscale-0 group-hover:scale-110 transition-all duration-500"
-                loading="lazy"
-              />
+
+              {item.kind === 'image' ? (
+                <>
+                  <div className="absolute top-2 right-2 z-20 bg-black/60 p-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <ZoomIn size={14} className="text-white" />
+                  </div>
+                  <img
+                    src={item.src}
+                    alt={`HOCHPOTENT Live ${item.index + 1}`}
+                    className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 group-active:grayscale-0 group-hover:scale-110 transition-all duration-500"
+                    loading="lazy"
+                  />
+                </>
+              ) : (
+                <>
+                  <video
+                    ref={el => { videoRefs.current[item.videoIndex] = el; }}
+                    src={item.src}
+                    poster={item.poster || undefined}
+                    muted={isMuted}
+                    playsInline
+                    loop
+                    preload="metadata"
+                    className={`w-full h-full object-cover filter contrast-110 transition-all duration-500 ${playingIndex === item.videoIndex ? 'grayscale-0' : 'grayscale group-hover:grayscale-0'}`}
+                    onEnded={() => setPlayingIndex(null)}
+                  />
+                  {/* Play/Pause indicator – hidden while playing */}
+                  <div className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-200 ${playingIndex === item.videoIndex ? 'opacity-0' : 'opacity-100'}`}>
+                    <div className="w-10 h-10 bg-black/70 border border-white/30 flex items-center justify-center group-hover:border-neon-violet transition-colors touch-manipulation">
+                      {playingIndex === item.videoIndex
+                        ? <Pause size={18} className="text-white" />
+                        : <Play size={18} className="text-white ml-0.5" />
+                      }
+                    </div>
+                  </div>
+                </>
+              )}
             </motion.div>
           ))}
         </div>
-
-        {/* Video section */}
-        {videos.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: reducedMotion ? 0 : 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: reducedMotion ? 0 : 0.6 }}
-            className="mb-8 md:mb-12"
-          >
-            {/* Video section header */}
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="font-display text-2xl md:text-3xl uppercase tracking-widest text-white">
-                {t.media.videosHeading}
-              </h3>
-              <button
-                onClick={toggleMute}
-                className="flex items-center gap-2 border border-white/20 hover:border-neon-cyan hover:text-neon-cyan active:border-neon-cyan active:text-neon-cyan px-4 py-2 font-display text-sm uppercase tracking-widest transition-colors touch-manipulation"
-                aria-label={isMuted ? t.media.unmuteBtn : t.media.muteBtn}
-              >
-                {isMuted
-                  ? <><VolumeX size={16} /> {t.media.unmuteBtn}</>
-                  : <><Volume2 size={16} /> {t.media.muteBtn}</>
-                }
-              </button>
-            </div>
-
-            {/* Video grid */}
-            <div className={`grid gap-4 ${videos.length === 1 ? 'grid-cols-1 max-w-2xl' : 'grid-cols-1 sm:grid-cols-2'}`}>
-              {videos.map((video, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: reducedMotion ? 0 : 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-20px' }}
-                  transition={{ duration: reducedMotion ? 0 : 0.4, delay: reducedMotion ? 0 : i * 0.1 }}
-                  className="bg-dark-surface group relative cursor-pointer overflow-hidden"
-                  onMouseEnter={() => playVideo(i)}
-                  onMouseLeave={() => pauseVideo(i)}
-                  onClick={() => togglePlay(i)}
-                >
-                  {/* Video element */}
-                  <div className="aspect-video relative">
-                    <video
-                      ref={el => { videoRefs.current[i] = el; }}
-                      src={video.src}
-                      poster={video.poster || undefined}
-                      muted={isMuted}
-                      playsInline
-                      loop
-                      preload="metadata"
-                      className={`w-full h-full object-cover filter contrast-110 transition-all duration-500 ${playingIndex === i ? 'grayscale-0' : 'grayscale group-hover:grayscale-0'}`}
-                      onEnded={() => setPlayingIndex(null)}
-                    />
-
-                    {/* Overlay hover tint */}
-                    <div className="absolute inset-0 bg-neon-violet/10 mix-blend-overlay opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300" />
-
-                    {/* Play/Pause button – always visible when paused, hover-reveal when playing */}
-                    <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ${playingIndex === i ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
-                      <div className="w-14 h-14 md:w-16 md:h-16 bg-black/70 border border-white/30 flex items-center justify-center group-hover:border-neon-violet transition-colors touch-manipulation">
-                        {playingIndex === i
-                          ? <Pause size={28} className="text-white" />
-                          : <Play size={28} className="text-white ml-1" />
-                        }
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Label */}
-                  {video.label && (
-                    <div className="px-3 py-2 border-t border-white/10">
-                      <span className="font-display text-sm uppercase tracking-widest text-gray-400">{video.label}</span>
-                    </div>
-                  )}
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        )}
 
         {/* Instagram CTA */}
         <motion.div
@@ -289,7 +234,6 @@ export default function Media() {
             className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center"
             onClick={closeLightbox}
           >
-            {/* Close button */}
             <button
               onClick={closeLightbox}
               className="absolute top-4 right-4 z-10 w-12 h-12 bg-dark-surface border border-white/20 flex items-center justify-center hover:border-neon-violet transition-colors touch-manipulation"
@@ -297,8 +241,6 @@ export default function Media() {
             >
               <X size={24} />
             </button>
-
-            {/* Prev button */}
             <button
               onClick={(e) => { e.stopPropagation(); prevImage(); }}
               className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-dark-surface border border-white/20 flex items-center justify-center hover:border-neon-violet transition-colors touch-manipulation"
@@ -306,8 +248,6 @@ export default function Media() {
             >
               <ChevronLeft size={24} />
             </button>
-
-            {/* Image */}
             <motion.img
               key={lightboxIndex}
               src={images[lightboxIndex]}
@@ -319,8 +259,6 @@ export default function Media() {
               className="max-w-[90vw] max-h-[85vh] object-contain"
               onClick={(e) => e.stopPropagation()}
             />
-
-            {/* Next button */}
             <button
               onClick={(e) => { e.stopPropagation(); nextImage(); }}
               className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-dark-surface border border-white/20 flex items-center justify-center hover:border-neon-violet transition-colors touch-manipulation"
@@ -328,13 +266,9 @@ export default function Media() {
             >
               <ChevronRight size={24} />
             </button>
-
-            {/* Counter */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 font-display text-sm uppercase tracking-widest text-gray-400">
               {lightboxIndex + 1} / {images.length}
             </div>
-
-            {/* Dot indicators */}
             <div className="absolute bottom-14 left-1/2 -translate-x-1/2 flex gap-2">
               {images.map((_, i) => (
                 <button
