@@ -152,6 +152,15 @@ export const sets = {
 //      Alle weiteren erscheinen im Raster darunter.
 //      Pfade sind relativ zu /public.
 //
+//    videos: Videos die unterhalb der Galerie angezeigt werden.
+//      src    = Pfad zur Videodatei relativ zu /public (z.B. "/images/testvid1.mp4")
+//      poster = Vorschaubild bevor das Video startet (optional, "" = keins)
+//      label  = Beschriftung unter dem Video
+//
+//    videosMutedByDefault: Startet jedes Video standardmäßig ohne Ton.
+//      true  = stumm starten (Ton per Klick auf "Ton an" einschalten)
+//      false = mit Ton starten
+//
 //    stats: Die 4 Kennzahlen in der Statistik-Leiste.
 //      value = angezeigter Wert (z.B. "150+", "∞")
 //      label = Beschriftung darunter (z.B. "Gigs", "Energy")
@@ -169,6 +178,17 @@ export const media = {
     "/images/media-9.jpg",
     // Weitere Bilder: "/images/media-10.jpg", "/images/media-11.jpg"
   ],
+  videos: [
+    {
+      src:    "/images/testvid1.mp4",
+      poster: "",                      // Vorschaubild (optional), z.B. "/images/media-1.jpg"
+      label:  "HOCHPOTENT Live",
+    },
+    // Weiteres Video:
+    // { src: "/images/meinvideo.mp4", poster: "/images/poster.jpg", label: "Live @ Club XY" },
+  ],
+  /** Videos standardmäßig stumm starten. true = kein Ton, false = mit Ton */
+  videosMutedByDefault: true,
   stats: [
     { value: "150+", label: "Gigs" },
     { value: "20+",  label: "Städte" },
@@ -290,6 +310,9 @@ export const translations = {
       instagramCta:  "Mehr auf Instagram",
       instagramSub:  "Backstage, Sets, Behind the Scenes",
       instagramBtn:  "Auf Instagram folgen",
+      videosHeading: "Videos",
+      muteBtn:       "Ton aus",
+      unmuteBtn:     "Ton an",
     },
 
     ueberMich: {
@@ -389,6 +412,9 @@ export const translations = {
       instagramCta:  "More on Instagram",
       instagramSub:  "Backstage, Sets, Behind the Scenes",
       instagramBtn:  "Follow on Instagram",
+      videosHeading: "Videos",
+      muteBtn:       "Mute",
+      unmuteBtn:     "Unmute",
     },
 
     ueberMich: {

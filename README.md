@@ -120,6 +120,16 @@ export const media = {
     "/images/media-2.jpg",
     // ... weitere Bilder einfach anhängen
   ],
+  videos: [
+    {
+      src:    "/images/testvid1.mp4",  // Pfad zur Videodatei in /public
+      poster: "/images/media-1.jpg",   // Vorschaubild (optional, "" = keins)
+      label:  "HOCHPOTENT Live",       // Beschriftung unter dem Video
+    },
+    // { src: "/images/meinvideo.mp4", poster: "", label: "Live @ Club XY" },
+  ],
+  /** true = Videos starten stumm (Ton per Klick einschaltbar), false = mit Ton */
+  videosMutedByDefault: true,
   stats: [
     { value: "150+", label: "Gigs" },
     { value: "20+",  label: "Städte" },
@@ -129,7 +139,10 @@ export const media = {
 };
 ```
 
-Bilder nach `/public/images/` kopieren, dann Pfad hier eintragen.
+- Bilder und Videos nach `/public/images/` kopieren, dann Pfad hier eintragen.
+- Videos starten automatisch beim Hover (Desktop) bzw. per Tap (Mobil).
+- Ton per `videosMutedByDefault` global steuern. Im UI gibt es einen "Ton an/aus"-Button.
+- Das `videos`-Array kann leer gelassen werden (`videos: []`) – dann erscheint kein Videobereich.
 
 ---
 
