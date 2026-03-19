@@ -181,7 +181,7 @@ export const media = {
   videos: [
     {
       src:    "/images/testvid1.mp4",
-      poster: "",                      // Vorschaubild (optional), z.B. "/images/media-1.jpg"
+      poster: "/public/logo.png",                      // Vorschaubild (optional), z.B. "/images/media-1.jpg"
       label:  "HOCHPOTENT Live",
     },
     // Weiteres Video:
