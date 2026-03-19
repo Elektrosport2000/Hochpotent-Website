@@ -34,7 +34,7 @@ export const artist = {
   /** Kurzzeile direkt unter dem Namen in der Bio */
   tagline: "Straight from the Underground",
   /** Genre-Liste (wird in Bio/Meta verwendet) */
-  genres: ["Schranz", "Hardtechno", "Industrial"],
+  genres: ["Schranz", "Hardtechno", "Peak-Time"],
   /** Haupt-E-Mail-Adresse (Kontakt, Impressum, Presskit-Link) */
   email: "info@hochpotent.com",
 };
@@ -91,14 +91,14 @@ export const aboutSection = {
 //    url: "" = kein Link, url: "https://..." = klickbar
 // ─────────────────────────────────────────────────────────────────────────────
 export const venues: { name: string; url: string }[] = [
-  { name: "Amphoria Kevelaer",   url: "" },
-  { name: "Docks Hamburg",       url: "" },
+  { name: "Amphoria Kevelaer",   url: "https://amphoria-kevelaer.de/" },
+  { name: "Docks Hamburg",       url: "https://docksfreiheit36.de/docks/" },
   { name: "Odonien",             url: "https://www.odonien.de" },
-  { name: "Impulz Techno",       url: "" },
-  { name: "Helios37",            url: "" },
-  { name: "Box Mönchengladbach", url: "" },
-  { name: "Flowers and Bees",    url: "" },
-  { name: "Club Vier Sieben",    url: "" },
+  { name: "Impulz Techno",       url: "https://www.instagram.com/impulztechno/" },
+  { name: "Helios37",            url: "https://www.helios37.de/" },
+  { name: "Kinky One",           url: "https://www.kinky-one.com/" },
+  { name: "Flowers and Bees",    url: "https://flowersandbees.de/" },
+  { name: "Temple by Echo",      url: "https://www.echorecordings.nl/" },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -137,7 +137,7 @@ export const sets = {
     },
     {
       id: "5SlAeV6PvJY",
-      label: "HOCHPOTENT Set",
+      label: "HOCHPOTENT Live Set",
     },
   ],
   /** Link zum vollständigen SoundCloud-Profil (Hauptbutton) */
@@ -271,9 +271,9 @@ export const translations = {
       headingAccent: "Power",
       p1: "Sound, der unter die Haut geht und dort bleibt. HOCHPOTENT steht für treibenden Schranz und düsteren Hardtechno. Rohe Energie, die auf präzise Rhythmik trifft, gemacht für die dunkelsten Dancefloors und die härtesten Nächte.",
       p2: "Tief verwurzelt in der industriellen Rave-Kultur bringt HOCHPOTENT eine Intensität ins Set, die man spürt bevor man sie hört. Jeder Track ein Hammer, jeder Drop ein Statement. No Excuses.",
-      sound:  { label: "Sound",  value: "Schranz, Hardtechno, Industrial" },
+      sound:  { label: "Sound",  value: "Schranz, Hardtechno, Peak-Time" },
       energy: { label: "Energie", value: "Fast, driving, relentless, intense" },
-      focus:  { label: "Fokus",  value: "Crowd control, peak-time pressure" },
+      focus:  { label: "Fokus",  value: "Crowd control, Peak-Time pressure" },
     },
 
     venues: {
