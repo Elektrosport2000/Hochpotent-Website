@@ -133,11 +133,15 @@ export const sets = {
   youtubeVideos: [
     {
       id: "sXdhMUOgS7A",
-      label: "HOCHPOTENT Live Set",
+      label: "HOCHPOTENT  - Workshop Techno - Live Set",
     },
     {
       id: "5SlAeV6PvJY",
-      label: "HOCHPOTENT Live Set",
+      label: "HOCHPOTENT - Werkfunk - Live Set",
+    },
+    {
+      id: "J-AkDn6UhuQ",
+      label: "HOCHPOTENT - Kreativfabrik - Live Set",
     },
   ],
   /** Link zum vollständigen SoundCloud-Profil (Hauptbutton) */
