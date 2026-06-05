@@ -119,15 +119,15 @@ export const sets = {
   soundcloudTracks: [
     {
       label: "Bellen",
-      url: "https://soundcloud.com/hochpotent/bellen",
+      url: "https://on.soundcloud.com/AkGpZ4Qd4Vvp6mfQ2j",
     },
     {
       label: "Läuft noch",
-      url: "https://soundcloud.com/hochpotent/laeuft-noch",
+      url: "https://on.soundcloud.com/5y4DO6mrw5VxDIaKwC",
     },
     {
       label: "Tausendfach",
-      url: "https://soundcloud.com/hochpotent/tausendfach",
+      url: "https://on.soundcloud.com/lP2F6BkvpCkMAPcBHJ",
     },
   ],
   youtubeVideos: [
