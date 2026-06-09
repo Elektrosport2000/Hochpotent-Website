@@ -123,11 +123,11 @@ export const sets = {
     },
     {
       label: "Läuft noch",
-      url: "https://on.soundcloud.com/5y4DO6mrw5VxDIaKwC",
+      url: "https://soundcloud.com/hochpotent/laeuft-noch?si=afcfb526d1ca48d3a643c8abbc4343c5&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing",
     },
     {
       label: "Tausendfach",
-      url: "https://on.soundcloud.com/lP2F6BkvpCkMAPcBHJ",
+      url: "https://soundcloud.com/hochpotent/tausendfach?si=afcfb526d1ca48d3a643c8abbc4343c5&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing",
     },
   ],
   youtubeVideos: [
